@@ -1,0 +1,14 @@
+{
+    "files.exclude": {
+      "android": true,
+      ".idea" : true,
+      ".dart_tool" : true,
+      ".metadata" : true,
+      "pubspec.lock" : true,
+      "tepipixqui_movil.iml" : true,
+      "build" : true,
+      "analysis_options.yaml" : true,
+      
+    }
+  }
+  

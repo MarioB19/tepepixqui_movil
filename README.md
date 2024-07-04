@@ -1,0 +1,1 @@
+# Mobile application to mobilize volunteer brigade members to fight fires.
