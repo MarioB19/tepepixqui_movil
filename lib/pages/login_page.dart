@@ -1,9 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:tepepixqui_movil/components/custom_button.dart';
+import 'package:tepepixqui_movil/components/custom_text_field.dart';
 import 'package:tepepixqui_movil/controllers/login_controller.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
+  @override
+  _LoginPageState createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
   final LoginController loginController = Get.put(LoginController());
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  bool isPasswordVisible = false;
+
+  void togglePasswordVisibility() {
+    setState(() {
+      isPasswordVisible = !isPasswordVisible;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,26 +42,30 @@ class LoginPage extends StatelessWidget {
               style: TextStyle(fontSize: 20),
             ),
             SizedBox(height: 20),
-            TextField(
+            CustomTextField(
+              hintText: 'Email',
+              controller: emailController,
               onChanged: (value) => loginController.setEmail(value),
-              decoration: InputDecoration(
-                labelText: 'Email',
-                border: OutlineInputBorder(),
-              ),
+              icon: Icons.email,
             ),
             SizedBox(height: 20),
-            TextField(
+            CustomTextField(
+              hintText: 'Password',
+              controller: passwordController,
+              isPassword: true,
+              isPasswordVisible: isPasswordVisible,
               onChanged: (value) => loginController.setPassword(value),
-              decoration: InputDecoration(
-                labelText: 'Password',
-                border: OutlineInputBorder(),
-              ),
-              obscureText: true,
+              icon: Icons.lock,
+              onVisibilityToggle: togglePasswordVisibility,
             ),
             SizedBox(height: 20),
-            ElevatedButton(
+            CustomButton(
+              text: 'Login',
               onPressed: () => loginController.login(),
-              child: Text('Login'),
+              backgroundColor: Colors.green.shade700,
+              textColor: Colors.white,
+              borderRadius: 16.0,
+              icon: Icons.login,
             ),
           ],
         ),
