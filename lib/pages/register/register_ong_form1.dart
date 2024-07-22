@@ -28,7 +28,7 @@ class RegisterOngForm1 extends StatelessWidget {
                 children: [
                   const SizedBox(height: 40),
                   Image.asset(
-                    'lib/images/logo.png',
+                    'assets/images/logo.png',
                     width: 250,
                     height: 250,
                   ),
@@ -39,7 +39,8 @@ class RegisterOngForm1 extends StatelessWidget {
                     onChanged: (value) {},
                     isPassword: false,
                     keyboardType: TextInputType.text,
-                    validator: (value) => ValidationsOng.validarNombreOrganizacion(value),
+                    validator: (value) =>
+                        ValidationsOng.validarNombreOrganizacion(value),
                   ),
                   const SizedBox(height: 30),
                   Obx(() {
@@ -52,7 +53,12 @@ class RegisterOngForm1 extends StatelessWidget {
                       ),
                       value: controller.tiempoFuncionamiento.value,
                       items: [
-                        "0 años", "1 año", "2 años", "3 años", "4 años", "+5 años"
+                        "0 años",
+                        "1 año",
+                        "2 años",
+                        "3 años",
+                        "4 años",
+                        "+5 años"
                       ].map((String value) {
                         return DropdownMenuItem<String>(
                           value: value,
@@ -94,7 +100,8 @@ class RegisterOngForm1 extends StatelessWidget {
                             onChanged: (value) {},
                             isPassword: false,
                             keyboardType: TextInputType.phone,
-                            validator: (value) => ValidationsOng.validarNumeroTelefonicoOrganizacion(value),
+                            validator: (value) => ValidationsOng
+                                .validarNumeroTelefonicoOrganizacion(value),
                           ),
                         ),
                       ],
@@ -102,12 +109,14 @@ class RegisterOngForm1 extends StatelessWidget {
                   ),
                   const SizedBox(height: 30),
                   CustomTextField(
-                    hintText: "Nombre completo del representante de\n la Asociacion/ONG",
+                    hintText:
+                        "Nombre completo del representante de\n la Asociacion/ONG",
                     controller: controller.nombreRepresentanteController,
                     onChanged: (value) {},
                     isPassword: false,
                     keyboardType: TextInputType.text,
-                    validator: (value) => ValidationsOng.validarNombreRepresentante(value),
+                    validator: (value) =>
+                        ValidationsOng.validarNombreRepresentante(value),
                   ),
                   const SizedBox(height: 30),
                   Obx(() {
@@ -143,12 +152,8 @@ class RegisterOngForm1 extends StatelessWidget {
                         ),
                       ),
                       value: controller.nivelOperativo.value,
-                      items: [
-                        "Internacional",
-                        "Nacional",
-                        "Estatal",
-                        "Local"
-                      ].map((String value) {
+                      items: ["Internacional", "Nacional", "Estatal", "Local"]
+                          .map((String value) {
                         return DropdownMenuItem<String>(
                           value: value,
                           child: Text(value),
@@ -164,7 +169,9 @@ class RegisterOngForm1 extends StatelessWidget {
                     onChanged: (value) {},
                     isPassword: false,
                     keyboardType: TextInputType.emailAddress,
-                    validator: (value) => ValidationsOng.validarCorreoElectronicoOrganizacion(value),
+                    validator: (value) =>
+                        ValidationsOng.validarCorreoElectronicoOrganizacion(
+                            value),
                   ),
                   const SizedBox(height: 30),
                   Obx(() {
@@ -176,7 +183,8 @@ class RegisterOngForm1 extends StatelessWidget {
                       isPasswordVisible: controller.obscurePassword.value,
                       onVisibilityToggle: controller.toggleObscurePassword,
                       keyboardType: TextInputType.text,
-                      validator: (value) => ValidationsOng.validarContrasenaOrganizacion(value),
+                      validator: (value) =>
+                          ValidationsOng.validarContrasenaOrganizacion(value),
                     );
                   }),
                   const SizedBox(height: 20),

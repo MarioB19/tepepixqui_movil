@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:tepepixqui_movil/components/custom_dialog.dart';
 import 'package:tepepixqui_movil/models/volunteer_model.dart';
 import 'package:tepepixqui_movil/pages/login_page.dart';
 

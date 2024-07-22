@@ -5,7 +5,6 @@ import 'package:tepepixqui_movil/controllers/register/register_volunteer_control
 import 'package:tepepixqui_movil/pages/login_page.dart';
 import 'package:tepepixqui_movil/pages/register/register_volunteer_form.dart';
 
-
 class RegisterVolunteerElection extends StatelessWidget {
   const RegisterVolunteerElection({super.key});
 
@@ -24,14 +23,14 @@ class RegisterVolunteerElection extends StatelessWidget {
               children: [
                 const SizedBox(height: 80),
                 Image.asset(
-                  'lib/images/logo.png',
+                  'assets/images/logo.png',
                   width: 250,
                   height: 250,
                 ),
                 const SizedBox(height: 100),
                 ListTile(
                   leading: Image.asset(
-                    'lib/images/google.png',
+                    'assets/images/google.png',
                     width: 24,
                     height: 24,
                   ),
@@ -47,7 +46,7 @@ class RegisterVolunteerElection extends StatelessWidget {
                   leading: const Icon(Icons.edit),
                   title: CustomButton(
                     text: "Registrarse con Formulario",
-                    onPressed: () => Get.to( RegisterVolunteerForm()),
+                    onPressed: () => Get.to(RegisterVolunteerForm()),
                     backgroundColor: Colors.black,
                     textColor: Colors.white,
                   ),

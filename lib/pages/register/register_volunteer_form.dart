@@ -8,7 +8,8 @@ import 'package:tepepixqui_movil/pages/login_page.dart';
 import 'package:tepepixqui_movil/utils/validations/login/validations_volunteer.dart';
 
 class RegisterVolunteerForm extends StatelessWidget {
-  final RegisterVolunteerController controller = Get.put(RegisterVolunteerController());
+  final RegisterVolunteerController controller =
+      Get.put(RegisterVolunteerController());
 
   RegisterVolunteerForm({super.key});
 
@@ -40,7 +41,7 @@ class RegisterVolunteerForm extends StatelessWidget {
                 children: [
                   const SizedBox(height: 40),
                   Image.asset(
-                    'lib/images/logo.png',
+                    'assets/images/logo.png',
                     width: 250,
                     height: 250,
                   ),
@@ -51,7 +52,8 @@ class RegisterVolunteerForm extends StatelessWidget {
                     onChanged: (value) {},
                     isPassword: false,
                     keyboardType: TextInputType.text,
-                    validator: (value) => ValidationsVolunteer.validarNombre(value),
+                    validator: (value) =>
+                        ValidationsVolunteer.validarNombre(value),
                   ),
                   const SizedBox(height: 20),
                   CustomTextField(
@@ -60,7 +62,8 @@ class RegisterVolunteerForm extends StatelessWidget {
                     onChanged: (value) {},
                     isPassword: false,
                     keyboardType: TextInputType.text,
-                    validator: (value) => ValidationsVolunteer.validarApellidos(value),
+                    validator: (value) =>
+                        ValidationsVolunteer.validarApellidos(value),
                   ),
                   const SizedBox(height: 20),
                   InputDecorator(
@@ -94,7 +97,8 @@ class RegisterVolunteerForm extends StatelessWidget {
                             onChanged: (value) {},
                             isPassword: false,
                             keyboardType: TextInputType.phone,
-                            validator: (value) => ValidationsVolunteer.validarCelular(value),
+                            validator: (value) =>
+                                ValidationsVolunteer.validarCelular(value),
                           ),
                         ),
                       ],
@@ -107,7 +111,8 @@ class RegisterVolunteerForm extends StatelessWidget {
                     onChanged: (value) {},
                     isPassword: false,
                     keyboardType: TextInputType.datetime,
-                    validator: (value) => ValidationsVolunteer.validarEdad(controller.fechaNacimiento.text),
+                    validator: (value) => ValidationsVolunteer.validarEdad(
+                        controller.fechaNacimiento.text),
                     readOnly: true,
                     suffixIcon: IconButton(
                       icon: const Icon(Icons.calendar_today),
@@ -121,7 +126,8 @@ class RegisterVolunteerForm extends StatelessWidget {
                     onChanged: (value) {},
                     isPassword: false,
                     keyboardType: TextInputType.text,
-                    validator: (value) => ValidationsVolunteer.validarNombreUsuario(value),
+                    validator: (value) =>
+                        ValidationsVolunteer.validarNombreUsuario(value),
                   ),
                   const SizedBox(height: 20),
                   CustomTextField(
@@ -130,19 +136,21 @@ class RegisterVolunteerForm extends StatelessWidget {
                     onChanged: (value) {},
                     isPassword: false,
                     keyboardType: TextInputType.emailAddress,
-                    validator: (value) => ValidationsVolunteer.validarCorreoElectronico(value),
+                    validator: (value) =>
+                        ValidationsVolunteer.validarCorreoElectronico(value),
                   ),
                   const SizedBox(height: 20),
                   Obx(() => CustomTextField(
-                    hintText: "Contraseña",
-                    controller: controller.password,
-                    onChanged: (value) {},
-                    isPassword: true,
-                    isPasswordVisible: controller.obscurePassword.value,
-                    onVisibilityToggle: controller.togglePasswordVisibility,
-                    keyboardType: TextInputType.text,
-                    validator: (value) => ValidationsVolunteer.validarContrasena(value),
-                  )),
+                        hintText: "Contraseña",
+                        controller: controller.password,
+                        onChanged: (value) {},
+                        isPassword: true,
+                        isPasswordVisible: controller.obscurePassword.value,
+                        onVisibilityToggle: controller.togglePasswordVisibility,
+                        keyboardType: TextInputType.text,
+                        validator: (value) =>
+                            ValidationsVolunteer.validarContrasena(value),
+                      )),
                   const SizedBox(height: 20),
                   CustomButton(
                     text: "Terminar registro",

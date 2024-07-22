@@ -7,11 +7,12 @@ import 'package:tepepixqui_movil/utils/time.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized(); // Asegura que los widgets estén inicializados
-   Time.setupTimeZone(); 
 
  await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
+  Time.setupTimeZone(); 
   
   runApp(MyApp());
 }

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tepepixqui_movil/components/custom_button_circular.dart';
@@ -20,45 +19,35 @@ class RegisterElection extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-
                 const SizedBox(height: 40),
                 Image.asset(
-                  'lib/images/logo.png',
+                  'assets/images/logo.png',
                   width: 250,
                   height: 250,
                 ),
-
                 const SizedBox(height: 100),
-
-
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-
                     CircularButton(
                       icon: Icons.people,
                       text: 'Si eres voluntario,\npulsa aquí',
                       onPressed: () {
                         Get.to(const RegisterVolunteerElection());
                       },
-                      heroTag: 'voluntarioHeroTag', 
+                      heroTag: 'voluntarioHeroTag',
                     ),
-
-
                     CircularButton(
                       icon: Icons.apartment,
                       text: 'Si eres una ONG,\npulsa aquí',
                       onPressed: () {
                         Get.to(RegisterOngForm1());
                       },
-                      heroTag: 'ongHeroTag', 
+                      heroTag: 'ongHeroTag',
                     ),
                   ],
                 ),
-
                 const SizedBox(height: 100),
-
-
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -71,7 +60,6 @@ class RegisterElection extends StatelessWidget {
                     GestureDetector(
                       onTap: () {
                         Get.offAll(LoginPage());
-
                       },
                       child: const Text(
                         " Inicia sesión aquí",
@@ -91,6 +79,3 @@ class RegisterElection extends StatelessWidget {
     );
   }
 }
-
-
-

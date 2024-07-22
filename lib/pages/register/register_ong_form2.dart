@@ -6,7 +6,6 @@ import 'package:tepepixqui_movil/controllers/register/register_ong_controller.da
 import 'package:tepepixqui_movil/pages/login_page.dart';
 import 'package:tepepixqui_movil/utils/validations/login/validations_ong.dart';
 
-
 class RegisterOngForm2 extends StatelessWidget {
   final RegisterOngController controller = Get.find();
 
@@ -27,18 +26,20 @@ class RegisterOngForm2 extends StatelessWidget {
               children: [
                 const SizedBox(height: 10),
                 Image.asset(
-                  'lib/images/logo.png',
+                  'assets/images/logo.png',
                   width: 200,
                   height: 200,
                 ),
                 const SizedBox(height: 25),
                 CustomTextField(
-                  hintText: 'Ingresa aquí la descripción de las actividades que llevan como ONG o Asociación',
+                  hintText:
+                      'Ingresa aquí la descripción de las actividades que llevan como ONG o Asociación',
                   controller: controller.actividadesController,
                   onChanged: (value) {},
                   isPassword: false,
                   keyboardType: TextInputType.multiline,
-                  validator: (value) => ValidationsOng.validarDescripcionActividades(value),
+                  validator: (value) =>
+                      ValidationsOng.validarDescripcionActividades(value),
                 ),
                 const SizedBox(height: 20),
                 const Text(
@@ -70,7 +71,8 @@ class RegisterOngForm2 extends StatelessWidget {
                 const SizedBox(height: 25),
                 CustomButton(
                   text: "Terminar solicitud de registro",
-                  onPressed: () => LoginPage(), //TODO: Pantalla que revisen su correo
+                  onPressed: () =>
+                      LoginPage(), //TODO: Pantalla que revisen su correo
                   backgroundColor: Colors.black,
                   textColor: Colors.white,
                 ),

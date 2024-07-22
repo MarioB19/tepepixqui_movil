@@ -25,7 +25,7 @@ class LoginPage extends StatelessWidget {
               children: [
                 const SizedBox(height: 20),
                 Image.asset(
-                  'lib/images/logo.png',
+                  'assets/images/logo.png',
                   width: 250,
                   height: 250,
                 ),
@@ -107,7 +107,7 @@ class LoginPage extends StatelessWidget {
                 const Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    CustomButtonGoogle(imagePath: 'lib/images/google.png'),
+                    CustomButtonGoogle(imagePath: 'assets/images/google.png'),
                     SizedBox(width: 25),
                   ],
                 ),
@@ -115,7 +115,7 @@ class LoginPage extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text("¿Aún no tienes cuenta?",
+                    const Text("¿Aún no tienes cuenta? ",
                         style: TextStyle(color: Colors.black)),
                     GestureDetector(
                       onTap: () => Get.to(const RegisterElection()),

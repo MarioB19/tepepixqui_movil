@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:tepepixqui_movil/components/custom_dialog.dart';
 
 class LoginController extends GetxController {
   var email = ''.obs;
@@ -25,7 +26,7 @@ class LoginController extends GetxController {
     if (email.value == "test@example.com" && password.value == "password") {
       Get.snackbar('Login Successful', 'Welcome!');
     } else {
-      Get.snackbar('Login Failed', 'Invalid email or password');
+      CustomDialogController.showCustomDialog('Login Failed');
     }
   }
 }
