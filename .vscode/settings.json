@@ -22,6 +22,7 @@
       "firestore.rules" : true,
       "storage.rules": true,
       "tepepixqui_movil.iml" : true,
+      ".idx" : true,
 
 
       
