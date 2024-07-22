@@ -1,93 +1,137 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tepepixqui_movil/components/custom_button.dart';
-import 'package:tepepixqui_movil/components/custom_login_footer.dart';
+import 'package:tepepixqui_movil/components/custom_button_google.dart';
 import 'package:tepepixqui_movil/components/custom_text_field.dart';
 import 'package:tepepixqui_movil/controllers/login_controller.dart';
-import 'package:tepepixqui_movil/pages/forgot_password_page.dart';
-import 'package:tepepixqui_movil/pages/register_page.dart';
+import 'package:tepepixqui_movil/pages/register/forgot_password_page.dart';
+import 'package:tepepixqui_movil/pages/register/register_election.dart';
 
-class LoginPage extends StatefulWidget {
-  @override
-  _LoginPageState createState() => _LoginPageState();
-}
-
-class _LoginPageState extends State<LoginPage> {
+class LoginPage extends StatelessWidget {
   final LoginController loginController = Get.put(LoginController());
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
-  bool isPasswordVisible = false;
 
-  void togglePasswordVisibility() {
-    setState(() {
-      isPasswordVisible = !isPasswordVisible;
-    });
-  }
+  LoginPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: Text('Login', style: TextStyle(color: Colors.green.shade700)),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        iconTheme: IconThemeData(color: Colors.green.shade700),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween, // Cambio aquí
-          children: [
-            Column(
+      body: SingleChildScrollView(
+        child: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(25.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                const SizedBox(height: 20),
                 Image.asset(
-                  'assets/images/logo.png',
-                  height: 120,
+                  'lib/images/logo.png',
+                  width: 250,
+                  height: 250,
                 ),
-                SizedBox(height: 30),
-                Text(
-                  'Please login to continue',
-                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.green.shade700),
-                ),
-                SizedBox(height: 30),
+                const SizedBox(height: 50),
                 CustomTextField(
-                  hintText: 'Email',
-                  controller: emailController,
-                  onChanged: (value) => loginController.setEmail(value),
-                  icon: Icons.email,
-                  keyboardType: TextInputType.emailAddress,
+                  hintText: "Nombre de Usuario o Correo electrónico",
+                  controller: loginController.usernameOrCorreoController,
+                  isPassword: false,
+                  onChanged: (value) {},
                 ),
-                SizedBox(height: 20),
-                CustomTextField(
-                  hintText: 'Password',
-                  controller: passwordController,
-                  isPassword: true,
-                  isPasswordVisible: isPasswordVisible,
-                  onChanged: (value) => loginController.setPassword(value),
-                  icon: Icons.lock,
-                  onVisibilityToggle: togglePasswordVisibility,
+                const SizedBox(height: 10),
+                Obx(() {
+                  return CustomTextField(
+                    hintText: "Contraseña",
+                    controller: loginController.passwordController,
+                    isPassword: true,
+                    isPasswordVisible: loginController.isPasswordVisible.value,
+                    onVisibilityToggle: () {
+                      loginController.togglePasswordVisibility();
+                    },
+                    onChanged: (value) {},
+                  );
+                }),
+                const SizedBox(height: 20),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        Get.to(ForgotPasswordPage());
+                      },
+                      child: const Text(
+                        "¿Olvidaste tu contraseña?",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.blue,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-                SizedBox(height: 30),
+                const SizedBox(height: 25),
                 CustomButton(
-                  text: 'Login',
-                  onPressed: () => loginController.login(),
-                  backgroundColor: Colors.green.shade700,
+                  text: "Iniciar Sesión",
+                  onPressed: () => 
+                     loginController.login()
+                  ,
+                  backgroundColor: Colors.black,
                   textColor: Colors.white,
-                  borderRadius: 16.0,
-                  icon: Icons.login,
+                ),
+                const SizedBox(height: 50),
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 25.0),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Divider(
+                          thickness: 0.5,
+                          color: Color.fromARGB(255, 0, 0, 0),
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 10.0),
+                        child: Text(
+                          'o continuar con',
+                          style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
+                        ),
+                      ),
+                      Expanded(
+                        child: Divider(
+                          thickness: 0.5,
+                          color: Color.fromARGB(255, 0, 0, 0),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 50),
+                const Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    CustomButtonGoogle(imagePath: 'lib/images/google.png'),
+                    SizedBox(width: 25),
+                  ],
+                ),
+                const SizedBox(height: 50),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text("¿Aún no tienes cuenta?",
+                        style: TextStyle(color: Colors.black)),
+                    GestureDetector(
+                      onTap: () => Get.to(const RegisterElection()),
+                      child: const Text(
+                        "Regístrate Aquí",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.blue,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
-            CustomLoginFooter(
-              onForgotPasswordPressed: () {
-                Get.to(ForgotPasswordPage());
-              },
-              onSignUpPressed: () {
-                Get.to(RegisterPage());
-              },
-            ),
-          ],
+          ),
         ),
       ),
     );

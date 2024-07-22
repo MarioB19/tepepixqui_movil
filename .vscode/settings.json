@@ -8,6 +8,7 @@
       "tepipixqui_movil.iml" : true,
       "build" : true,
       "analysis_options.yaml" : true,
+      "lib/firebase_options.dart" : true,
       
     }
   }

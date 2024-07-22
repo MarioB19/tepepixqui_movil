@@ -8,7 +8,7 @@ class CustomButton extends StatelessWidget {
   final double borderRadius;
   final IconData? icon;
 
-  CustomButton({
+  const CustomButton({
     required this.text,
     required this.onPressed,
     this.backgroundColor = Colors.green,

@@ -1,8 +1,12 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class LoginController extends GetxController {
   var email = ''.obs;
   var password = ''.obs;
+  var isPasswordVisible = false.obs;
+  final TextEditingController usernameOrCorreoController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
 
   void setEmail(String value) {
     email.value = value;
@@ -10,6 +14,10 @@ class LoginController extends GetxController {
 
   void setPassword(String value) {
     password.value = value;
+  }
+
+  void togglePasswordVisibility() {
+    isPasswordVisible.value = !isPasswordVisible.value;
   }
 
   void login() {
