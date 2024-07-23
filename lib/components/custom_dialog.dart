@@ -9,12 +9,37 @@ class CustomDialogController {
         duration: const Duration(seconds: 1), // Duración de la animación
         curve: Curves.easeInOut, // Tipo de animación
         child: AlertDialog(
-          backgroundColor: Colors.green[100],
-          title: Text('Aviso Importante', style: TextStyle(color: Colors.green[900])),
-          content: Text(message, style: TextStyle(color: Colors.green[800])),  // Usar el mensaje pasado como parámetro
+          backgroundColor: Colors.green[50], // Color de fondo más suave
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(30),
+          ),
+          title: Text(
+            'Aviso Importante',
+            style: TextStyle(
+              color: Colors.green[900],
+              fontWeight: FontWeight.bold,
+              fontSize: 24,
+            ),
+          ),
+          content: Text(
+            message,
+            style: TextStyle(
+              color: Colors.green[800],
+              fontWeight: FontWeight.w500,
+              fontSize: 18,
+            ),
+          ),
           actions: <Widget>[
-            TextButton(
-              child: Text('Cerrar', style: TextStyle(color: Colors.green[900])),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                foregroundColor: Colors.white, backgroundColor: Colors.red, // Texto blanco
+              ),
+              child: const Text(
+                'Cerrar',
+                style: TextStyle(
+                  fontSize: 16,
+                ),
+              ),
               onPressed: () => Get.back(), // Utilizar Get.back() para cerrar el diálogo
             ),
           ],

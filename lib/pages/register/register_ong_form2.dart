@@ -40,6 +40,8 @@ class RegisterOngForm2 extends StatelessWidget {
                   keyboardType: TextInputType.multiline,
                   validator: (value) =>
                       ValidationsOng.validarDescripcionActividades(value),
+                  maxLines: 5, // Establecer el máximo de líneas
+                  minLines: 1, // Establecer el mínimo de líneas
                 ),
                 const SizedBox(height: 20),
                 const Text(
@@ -71,8 +73,9 @@ class RegisterOngForm2 extends StatelessWidget {
                 const SizedBox(height: 25),
                 CustomButton(
                   text: "Terminar solicitud de registro",
-                  onPressed: () =>
-                      LoginPage(), //TODO: Pantalla que revisen su correo
+                  onPressed: () {
+                    controller.signupPart2();
+                  },
                   backgroundColor: Colors.black,
                   textColor: Colors.white,
                 ),

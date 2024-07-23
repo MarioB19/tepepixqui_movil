@@ -4,8 +4,11 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:tepepixqui_movil/components/custom_dialog.dart';
 import 'package:tepepixqui_movil/models/volunteer_model.dart';
 import 'package:tepepixqui_movil/pages/login_page.dart';
+import 'package:tepepixqui_movil/pages/register/register_volunteer_auth.dart';
+import 'package:tepepixqui_movil/utils/database/login_querys.dart';
 
 class RegisterVolunteerController extends GetxController {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -57,34 +60,17 @@ class RegisterVolunteerController extends GetxController {
     String nombreUsuario = username.text.trim();
     String correoElectronico = correo.text.trim();
 
-    //TODO: Logica de username exists
-    /*
-
-
-    CollectionReference voluntarios =
-        FirebaseFirestore.instance.collection('voluntarios');
-
-    CollectionReference asociacion =
-        FirebaseFirestore.instance.collection('asociacion');
-
-    if (await UtilidadesLogin.existsUsername(
-        voluntarios, asociacion, nombreUsuario)) {
-      final dialogController = Get.put(DialogController());
-      dialogController.showCustomDialog('El nombre de usuario ya esta en uso');
-
-      return; 
+    if (await LoginQuerys.checkIfFieldExists("username", nombreUsuario.toLowerCase())) {
+      CustomDialogController.showCustomDialog(
+          'El nombre de usuario ya está en uso');
+      return;
     }
 
-    if (await UtilidadesLogin.existsEmail(
-        voluntarios, asociacion, correoElectronico)) {
-      final dialogController = Get.put(DialogController());
-      dialogController.showCustomDialog('El correo electrónico ya esta en uso');
-
-      return; 
+       if (await LoginQuerys.checkIfFieldExists("correoElectronico", correoElectronico.toLowerCase())) {
+      CustomDialogController.showCustomDialog(
+          'El correo electronico ya está en uso');
+      return;
     }
-
-
-  */
 
     try {
       UserCredential userCredential = await FirebaseAuth.instance
@@ -102,14 +88,17 @@ class RegisterVolunteerController extends GetxController {
           apellidos: apellidos.text.trim(),
           correoElectronico: correo.text.trim().toLowerCase(),
           telefono: numerotelefono.text.trim().toLowerCase(),
-          username: username.text.trim(),
-          contrasena: password.text,
+          username: username.text.trim().toLowerCase(),
           fechaNacimiento: fechaNacimiento.text,
         );
 
         voluntario.toFirestore();
 
         await voluntario.save();
+        await user.sendEmailVerification();
+
+          Get.offAll(LoginPage());
+
       } else {
         print('Error: No se pudo obtener la información del usuario');
       }
@@ -130,38 +119,29 @@ class RegisterVolunteerController extends GetxController {
       final GoogleSignInAuthentication googleSignInAuthentication =
           await googleSignInAccount.authentication;
 
-/*
-    final String googleEmail = googleSignInAccount.email;
+      final String googleEmail = googleSignInAccount.email;
 
-    bool existe = await verificarDocumentoPorEmail(googleEmail); //TODO  
-
+      bool existe = await LoginQuerys.checkIfFieldExists(
+          "correoElectronico", googleEmail.toLowerCase().trim());
 
       if (!existe) {
-              final AuthCredential credential = GoogleAuthProvider.credential(
-        accessToken: googleSignInAuthentication.accessToken,
-        idToken: googleSignInAuthentication.idToken,
-      );
+        final AuthCredential credential = GoogleAuthProvider.credential(
+          accessToken: googleSignInAuthentication.accessToken,
+          idToken: googleSignInAuthentication.idToken,
+        );
 
-      final UserCredential authResult =
-          await _auth.signInWithCredential(credential);
-      final User? user = authResult.user;
+        final UserCredential authResult =
+            await _auth.signInWithCredential(credential);
+        final User? user = authResult.user;
 
-
-
-
-
-    
-     //   Get.to(DatosFaltantesVoluntario(user: user, provedor: "google",));
+        Get.to(RegisterVolunteerAuth(user: user, provedor: "google"));
       } else {
-
         await _auth.signOut();
         await GoogleSignIn().signOut();
 
-
-        CustomDialogController.showCustomDialog('El correo electrónico ya esta en uso');
+        CustomDialogController.showCustomDialog(
+            'El correo electrónico ya esta en uso');
       }
-
-      */
     } catch (error) {
       print('Error al autenticar con Google: $error');
     }
@@ -177,22 +157,13 @@ class RegisterVolunteerController extends GetxController {
     String nombre = nombreYApellidos.isNotEmpty ? nombreYApellidos[0] : '';
     String apellidos = nombreYApellidos.length > 1 ? nombreYApellidos[1] : '';
 
-    String nombreUsuario = username.text.trim();
+    String nombreUsuario = username.text.trim().toLowerCase();
 
-    //TODO: Logica nombre de usuario repetido
-    /*
-  CollectionReference voluntarios = FirebaseFirestore.instance.collection('voluntarios');
-  CollectionReference asociacion = FirebaseFirestore.instance.collection('asociacion');
-
-
-  if (await UtilidadesLogin.existsUsername(voluntarios, asociacion, nombreUsuario)) {
-    final dialogController = Get.put(DialogController());
-    dialogController.showCustomDialog('El nombre de usuario ya está en uso');
-    return; 
-    
-  }
-
-  */
+    if (await LoginQuerys.checkIfFieldExists("username", nombreUsuario)) {
+      CustomDialogController.showCustomDialog(
+          'El nombre de usuario ya está en uso');
+      return;
+    }
 
     final voluntario = VolunteerModel(
       fechaCreacion: Timestamp.now(),
@@ -203,16 +174,14 @@ class RegisterVolunteerController extends GetxController {
       correoElectronico: user.email?.trim().toLowerCase() ?? "",
       telefono: numerotelefono.text.trim(),
       username: nombreUsuario.trim(),
-      contrasena: '',
-      estado: "Aceptado",
       fechaNacimiento: fechaNacimiento.text,
     );
 
     voluntario.toFirestore();
 
     try {
-    voluntario.save();
- 
+      voluntario.save();
+
       Get.offAll(() => LoginPage());
     } catch (error) {
       //print('Error al agregar voluntario: $error');

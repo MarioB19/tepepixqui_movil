@@ -12,6 +12,8 @@ class CustomTextField extends StatelessWidget {
   final String? Function(String?)? validator;
   final bool readOnly; // Nuevo parámetro para solo lectura
   final Widget? suffixIcon; // Nuevo parámetro para el ícono de sufijo
+  final int maxLines; // Nuevo parámetro para el máximo de líneas
+  final int minLines; // Nuevo parámetro para el mínimo de líneas
 
   CustomTextField({
     required this.hintText,
@@ -25,6 +27,8 @@ class CustomTextField extends StatelessWidget {
     this.validator,
     this.readOnly = false, // Valor por defecto es falso
     this.suffixIcon, // Valor por defecto es nulo
+    this.maxLines = 5, // Valor por defecto para el máximo de líneas
+    this.minLines = 1, // Valor por defecto para el mínimo de líneas
   });
 
   @override
@@ -38,6 +42,8 @@ class CustomTextField extends StatelessWidget {
       autovalidateMode: AutovalidateMode.onUserInteraction,
       validator: validator,
       readOnly: readOnly, // Aplicar el parámetro readOnly
+      maxLines: isPassword ? 1 : maxLines, // Limitar maxLines si es una contraseña
+      minLines: minLines, // Establecer el mínimo de líneas
       decoration: InputDecoration(
         hintText: hintText,
         contentPadding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),

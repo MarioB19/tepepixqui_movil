@@ -9,21 +9,18 @@ class VolunteerModel {
   String correoElectronico;
   String telefono;
   String username;
-  String contrasena;
   String fechaNacimiento;
-  String estado;
+
 
   VolunteerModel({
     required this.uidVoluntario,
     required this.fechaCreacion,
     required this.provedor,
     required this.nombre,
-    this.estado = "Pendiente",
     required this.apellidos,
     required this.correoElectronico,
     required this.telefono,
     required this.username,
-    required this.contrasena,
     required this.fechaNacimiento,
   });
 
@@ -60,9 +57,8 @@ class VolunteerModel {
       'correoElectronico': correoElectronico,
       'telefono': telefono,
       'username': username,
-      'contrasena': contrasena,
       'fechaNacimiento': fechaNacimiento,
-      'estado' : estado,
+      
     };
   }
 
@@ -78,9 +74,7 @@ class VolunteerModel {
       correoElectronico: data['correoElectronico'],
       telefono: data['telefono'],
       username: data['username'],
-      contrasena: data['contrasena'],
       fechaNacimiento: data['fechaNacimiento'],
-      estado: data['estado']
     );
   }
 }

@@ -51,7 +51,7 @@ class ValidationsVolunteer {
 
   static String? validarEdad(String fechaNacimientoStr) {
     
-    List<String> partes = fechaNacimientoStr.split('/');
+    List<String> partes = fechaNacimientoStr.split('/') ;
     if (partes.length != 3) {
       return "El formato de la fecha de nacimiento es incorrecto";
     }

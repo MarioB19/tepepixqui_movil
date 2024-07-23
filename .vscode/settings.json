@@ -1,6 +1,6 @@
 {
     "files.exclude": {
-      "android": true,
+      "android": false,
       "linux" : true,
       "macos" : true,
       "web" : true,

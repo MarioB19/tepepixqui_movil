@@ -9,7 +9,9 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:tepepixqui_movil/components/custom_dialog.dart';
 import 'package:tepepixqui_movil/models/ong_model.dart';
+import 'package:tepepixqui_movil/pages/login_page.dart';
 import 'package:tepepixqui_movil/pages/register/register_ong_form2.dart';
+import 'package:tepepixqui_movil/utils/database/login_querys.dart';
 import 'package:tepepixqui_movil/utils/time.dart';
 
 class RegisterOngController extends GetxController {
@@ -86,16 +88,6 @@ class RegisterOngController extends GetxController {
     }
   }
 
-  void toggleOption(String option) {
-    if (selectedOptions.contains(option)) {
-      selectedOptions.remove(option);
-    } else {
-      if (selectedOptions.length < 5) {
-        selectedOptions.add(option);
-      }
-    }
-  }
-
   var selectedDate = DateTime.now().obs;
   var obscurePassword = true.obs;
 
@@ -107,93 +99,63 @@ class RegisterOngController extends GetxController {
     if (!signupFormKey.currentState!.validate()) {
       return;
     }
-    /*
-    CollectionReference voluntarios =
-        FirebaseFirestore.instance.collection('voluntarios');
 
-    CollectionReference asociacion =
-        FirebaseFirestore.instance.collection('asociacion');
-
-    //TODO: Validaciones que no exista anteriormente
-
-
-
-    if (await UtilidadesLogin.existsUsername(
-        voluntarios, asociacion, nombreONGController.text.trim())) {
-      final CustomDialogController = Get.put(CustomDialogController());
-      CustomDialogController.showCustomDialog('El nombre de usuario ya esta en uso');
-
-      return; 
+    if (await LoginQuerys.checkIfFieldExists(
+        "username", nombreONGController.text.trim())) {
+      CustomDialogController.showCustomDialog(
+          'El nombre de usuario ya está en uso');
+      return;
     }
 
-    if (await UtilidadesLogin.existsEmail(
-        voluntarios, asociacion, correoController.text.trim())) {
-      final CustomDialogController = Get.put(CustomDialogController());
-      CustomDialogController.showCustomDialog('El correo electrónico ya esta en uso');
-
-      return; 
+    if (await LoginQuerys.checkIfFieldExists(
+        "correoElectronico", correoController.text.trim().toLowerCase())) {
+      CustomDialogController.showCustomDialog(
+          'El correo electronico ya está en uso');
+      return;
     }
-    */
 
     Get.to(RegisterOngForm2());
   }
 
   Future<void> signupPart2() async {
-    if (!signupFormKey2.currentState!.validate()) {
-      return;
-    }
     if (pdfFileName.value == null) {
-
       CustomDialogController.showCustomDialog('Agregue un archivo PDF');
       return;
     }
 
     if (!pdfFileName.value!.endsWith(".pdf")) {
-
-      CustomDialogController.showCustomDialog('Debe seleccionar un archivo PDF');
+      CustomDialogController.showCustomDialog(
+          'Debe seleccionar un archivo PDF');
       return;
     }
 
     await uploadPdfFile();
 
-    final asociacion = OngModel(
-        fechaSolicitud:
-            Timestamp.fromDate(Time.getNowInMexicoCity()),
-        provedor: 'correo',
-        username: nombreONGController.text.trim(),
-        tiempoFuncionamiento: tiempoFuncionamiento.value.toString(),
-        correoElectronico: correoController.text.trim().toLowerCase(),
-        telefono: numTelefonoController.text.trim(),
-        nombreRepresentante: nombreRepresentanteController.text,
-        cantidadPersonas: cantidadPersonas.value.toString(),
-        nivelOperativo: nivelOperativo.value.toString(),
-        descripcionActividades: actividadesController.text,
-        contrasena: passwordController.text,
-        cartaNotariadaPDF: pdfFileUrl.value.toString());
-
-    final asociacionData = asociacion.toFirestore();
-
     try {
       UserCredential userCredential =
           await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: correoController.text.trim().toLowerCase(),
-        password: passwordController.text.trim(),
+        password: passwordController.text,
       );
 
       final uid = userCredential.user?.uid;
-      if (uid != null && uid.isNotEmpty) {
-        await FirebaseFirestore.instance
-            .collection('asociacion')
-            .doc(uid)
-            .set(asociacionData);
+      final asociacion = OngModel(
+          fechaSolicitud: Timestamp.fromDate(Time.getNowInMexicoCity()),
+          uid: uid!,
+          username: nombreONGController.text.trim().toLowerCase(),
+          tiempoFuncionamiento: tiempoFuncionamiento.value.toString(),
+          correoElectronico: correoController.text.trim().toLowerCase(),
+          telefono: numTelefonoController.text.trim(),
+          nombreRepresentante: nombreRepresentanteController.text,
+          cantidadPersonas: cantidadPersonas.value.toString(),
+          nivelOperativo: nivelOperativo.value.toString(),
+          descripcionActividades: actividadesController.text,
+          cartaNotariadaPDF: pdfFileUrl.value.toString());
 
-        await FirebaseFirestore.instance
-            .collection('asociacion')
-            .doc(uid)
-            .update({
-          'uidONG': uid,
-        });
-      }
+      asociacion.save();
+
+      await userCredential.user?.sendEmailVerification();
+      Get.offAll(LoginPage());
     } on FirebaseAuthException catch (authError) {
       print('Error al crear usuario: ${authError.message}');
     } catch (error) {
