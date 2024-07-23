@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:tepepixqui_movil/components/custom_dialog.dart';
+import 'package:tepepixqui_movil/components/generals/custom_dialog.dart';
 import 'package:tepepixqui_movil/utils/database/login_querys.dart';
 
 class ForgotPasswordController extends GetxController {

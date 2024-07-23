@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:tepepixqui_movil/components/custom_button.dart';
+import 'package:tepepixqui_movil/components/generals/custom_button.dart';
 import 'package:tepepixqui_movil/pages/login_page.dart';
 
 class RegisterVerifyEmail extends StatelessWidget {

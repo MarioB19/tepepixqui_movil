@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:tepepixqui_movil/components/custom_dialog.dart';
+import 'package:tepepixqui_movil/components/generals/custom_dialog.dart';
 import 'package:tepepixqui_movil/controllers/auth_controller.dart';
 import 'package:tepepixqui_movil/pages/ong/index_ong.dart';
 import 'package:tepepixqui_movil/pages/volunteer/index_volunteer.dart';

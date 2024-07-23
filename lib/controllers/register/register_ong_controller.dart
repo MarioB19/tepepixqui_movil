@@ -7,7 +7,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:tepepixqui_movil/components/custom_dialog.dart';
+import 'package:tepepixqui_movil/components/generals/custom_dialog.dart';
 import 'package:tepepixqui_movil/models/ong_model.dart';
 
 import 'package:tepepixqui_movil/pages/register/register_ong_form2.dart';

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:tepepixqui_movil/components/custom_dialog.dart';
+import 'package:tepepixqui_movil/components/generals/custom_dialog.dart';
 import 'package:tepepixqui_movil/models/volunteer_model.dart';
 import 'package:tepepixqui_movil/pages/login_page.dart';
 import 'package:tepepixqui_movil/pages/register/register_verify_email.dart';

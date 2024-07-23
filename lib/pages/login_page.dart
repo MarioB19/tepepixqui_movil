@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:tepepixqui_movil/components/custom_button.dart';
-import 'package:tepepixqui_movil/components/custom_button_google.dart';
-import 'package:tepepixqui_movil/components/custom_text_field.dart';
+import 'package:tepepixqui_movil/components/generals/custom_button.dart';
+import 'package:tepepixqui_movil/components/generals/custom_button_google.dart';
+import 'package:tepepixqui_movil/components/generals/custom_text_field.dart';
 import 'package:tepepixqui_movil/controllers/login_controller.dart';
 import 'package:tepepixqui_movil/pages/register/forgot_password_page.dart';
 import 'package:tepepixqui_movil/pages/register/register_election.dart';

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:tepepixqui_movil/components/generals/custom_curved_navigation_bar.dart';
+import 'package:tepepixqui_movil/components/generals/custom_header.dart';
 import 'package:tepepixqui_movil/controllers/auth_controller.dart';
 
 class IndexOng extends StatelessWidget {
@@ -10,22 +12,40 @@ class IndexOng extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Bienvenida ONG'),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.logout),
-            onPressed: () async {
-              await authController.logout();
-            },
-          ),
-        ],
+
+      appBar: CustomHeader(
+        logoPath: 'assets/images/logo_indoor.png',
+        redirectUrl: "https://tepepixqui.vercel.app/",
+        onReportIconPressed: () {
+          print('Ícono de informes presionado');
+        },
+        onLogoutPressed: () async {
+          await authController.logout();
+        },
       ),
-      body:  Center(
-        child: Text(
-          'Hola, soy ong ${authController.getUid()}',
-          style: const TextStyle(fontSize: 24),
-        ),
+
+      body: CustomCurvedNavigationBar(
+        pages: [
+          Center(
+            child: Text(
+              'Hola, soy ong ${authController.getUid()}',
+              style: const TextStyle(fontSize: 24),
+            ),
+          ),
+          const Center(child: Text('Página 2')),
+          const Center(child: Text('Página 3')),
+          const Center(child: Text('Página 4')),
+          const Center(child: Text('Página 5')),
+          const Center(child: Text('Página 6')),
+        ],
+        icons: const [
+          Icons.warning_amber_outlined,
+          Icons.campaign,
+          Icons.group,
+          Icons.local_fire_department_outlined,
+          Icons.volunteer_activism_outlined,
+          Icons.person
+        ],
       ),
     );
   }

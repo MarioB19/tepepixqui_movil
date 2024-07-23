@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:tepepixqui_movil/components/custom_button.dart';
+import 'package:tepepixqui_movil/components/generals/custom_button.dart';
 import 'package:tepepixqui_movil/controllers/register/register_volunteer_controller.dart';
 import 'package:tepepixqui_movil/pages/login_page.dart';
 import 'package:tepepixqui_movil/pages/register/register_volunteer_form.dart';

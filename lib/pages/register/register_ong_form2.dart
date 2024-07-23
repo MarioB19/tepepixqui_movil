@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:tepepixqui_movil/components/custom_button.dart';
-import 'package:tepepixqui_movil/components/custom_text_field.dart';
+import 'package:tepepixqui_movil/components/generals/custom_button.dart';
+import 'package:tepepixqui_movil/components/generals/custom_text_field.dart';
 import 'package:tepepixqui_movil/controllers/register/register_ong_controller.dart';
 import 'package:tepepixqui_movil/utils/validations/login/validations_ong.dart';
 

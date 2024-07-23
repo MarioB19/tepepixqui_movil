@@ -115,7 +115,7 @@ class LoginQuerys {
       loginStatus = true;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'invalid-credential') {
-        messageError = 'La cuenta aun no ha sido verificada';
+        messageError = 'Credenciales incorrectas';
       } else if (e.code == 'user-not-found') {
         messageError = 'Usuario no encontrado';
       } else if (e.code == 'wrong-password') {
