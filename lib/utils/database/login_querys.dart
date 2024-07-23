@@ -136,7 +136,8 @@ class LoginQuerys {
     return {
       'loginStatus': loginStatus,
       'userType': userType,
-      'messageError': messageError
+      'messageError': messageError,
+      'email': email,
     };
   }
 
