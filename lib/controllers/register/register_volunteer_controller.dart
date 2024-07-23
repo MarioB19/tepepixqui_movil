@@ -7,6 +7,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:tepepixqui_movil/components/custom_dialog.dart';
 import 'package:tepepixqui_movil/models/volunteer_model.dart';
 import 'package:tepepixqui_movil/pages/login_page.dart';
+import 'package:tepepixqui_movil/pages/register/register_verify_email.dart';
 import 'package:tepepixqui_movil/pages/register/register_volunteer_auth.dart';
 import 'package:tepepixqui_movil/utils/database/login_querys.dart';
 
@@ -97,7 +98,7 @@ class RegisterVolunteerController extends GetxController {
         await voluntario.save();
         await user.sendEmailVerification();
 
-          Get.offAll(LoginPage());
+         Get.offAll(RegisterVerifyEmail(correoElectronico: correo.text.trim().toLowerCase()));
 
       } else {
         print('Error: No se pudo obtener la información del usuario');
