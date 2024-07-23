@@ -9,7 +9,7 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:tepepixqui_movil/components/custom_dialog.dart';
 import 'package:tepepixqui_movil/models/ong_model.dart';
-import 'package:tepepixqui_movil/pages/login_page.dart';
+
 import 'package:tepepixqui_movil/pages/register/register_ong_form2.dart';
 import 'package:tepepixqui_movil/pages/register/register_verify_email.dart';
 import 'package:tepepixqui_movil/utils/database/login_querys.dart';
@@ -97,7 +97,7 @@ class RegisterOngController extends GetxController {
   }
 
   Future<void> signupPart1() async {
-    if (!signupFormKey.currentState!.validate()) {
+    if (!signupFormKey2.currentState!.validate()) {
       return;
     }
 
@@ -119,6 +119,10 @@ class RegisterOngController extends GetxController {
   }
 
   Future<void> signupPart2() async {
+    if (!signupFormKey.currentState!.validate()) {
+      return;
+    }
+
     if (pdfFileName.value == null) {
       CustomDialogController.showCustomDialog('Agregue un archivo PDF');
       return;

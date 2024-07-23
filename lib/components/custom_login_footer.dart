@@ -4,7 +4,7 @@ class CustomLoginFooter extends StatelessWidget {
   final VoidCallback onForgotPasswordPressed;
   final VoidCallback onSignUpPressed;
 
-  CustomLoginFooter({
+  const CustomLoginFooter({super.key, 
     required this.onForgotPasswordPressed,
     required this.onSignUpPressed,
   });
@@ -13,7 +13,7 @@ class CustomLoginFooter extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SizedBox(height: 20),
+        const SizedBox(height: 20),
         TextButton(
           onPressed: onForgotPasswordPressed,
           child: Text(
@@ -21,14 +21,14 @@ class CustomLoginFooter extends StatelessWidget {
             style: TextStyle(color: Colors.green.shade700),
           ),
         ),
-        SizedBox(height: 20), // Ajustamos el espaciado aquí
+        const SizedBox(height: 20), // Ajustamos el espaciado aquí
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text("Don't have an account? "),
+            const Text("Don't have an account? "),
             GestureDetector(
               onTap: onSignUpPressed,
-              child: Text(
+              child: const Text(
                 'Sign Up',
                 style: TextStyle(
                   color: Colors.blue,
@@ -38,7 +38,7 @@ class CustomLoginFooter extends StatelessWidget {
             ),
           ],
         ),
-        SizedBox(height: 20),
+        const SizedBox(height: 20),
       ],
     );
   }

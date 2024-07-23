@@ -15,7 +15,7 @@ class CustomTextField extends StatelessWidget {
   final int maxLines; // Nuevo parámetro para el máximo de líneas
   final int minLines; // Nuevo parámetro para el mínimo de líneas
 
-  CustomTextField({
+  const CustomTextField({super.key, 
     required this.hintText,
     required this.controller,
     this.isPassword = false,
@@ -46,7 +46,7 @@ class CustomTextField extends StatelessWidget {
       minLines: minLines, // Establecer el mínimo de líneas
       decoration: InputDecoration(
         hintText: hintText,
-        contentPadding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
+        contentPadding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(16.0),
           borderSide: BorderSide(color: Colors.grey.shade300),

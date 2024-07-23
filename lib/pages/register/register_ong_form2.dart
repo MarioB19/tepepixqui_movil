@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:tepepixqui_movil/components/custom_button.dart';
 import 'package:tepepixqui_movil/components/custom_text_field.dart';
 import 'package:tepepixqui_movil/controllers/register/register_ong_controller.dart';
-import 'package:tepepixqui_movil/pages/login_page.dart';
 import 'package:tepepixqui_movil/utils/validations/login/validations_ong.dart';
 
 class RegisterOngForm2 extends StatelessWidget {

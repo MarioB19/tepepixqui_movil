@@ -10,7 +10,6 @@ class RegisterVerifyEmail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
       backgroundColor: Colors.white,
       body: Center(
         child: Padding(
@@ -18,7 +17,6 @@ class RegisterVerifyEmail extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-       
               Image.asset(
                 'assets/images/logo.png',
                 width: 250,
@@ -43,12 +41,13 @@ class RegisterVerifyEmail extends StatelessWidget {
                     color: Colors.black,
                   ),
                   children: [
-                    const TextSpan(text: 'Hemos enviado un enlace de verificación a tu correo electrónico. Por favor, verifica tu cuenta para continuar, lo hemos enviado al siguiente correo ',
-                    style:  TextStyle(
-                
+                    const TextSpan(
+                      text:
+                          'Hemos enviado un enlace de verificación a tu correo electrónico. Por favor, verifica tu cuenta para continuar, lo hemos enviado al siguiente correo ',
+                      style: TextStyle(
                         fontSize: 18,
-                  
-                      ),),
+                      ),
+                    ),
                     TextSpan(
                       text: correoElectronico,
                       style: const TextStyle(
@@ -64,7 +63,8 @@ class RegisterVerifyEmail extends StatelessWidget {
               CustomButton(
                 text: "Volver al inicio de sesión",
                 onPressed: () {
-                  Get.offAll(LoginPage()); // Navegar a la página de inicio de sesión
+                  Get.offAll(
+                      LoginPage()); // Navegar a la página de inicio de sesión
                 },
                 backgroundColor: Colors.black,
                 textColor: Colors.white,
