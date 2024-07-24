@@ -11,7 +11,7 @@ class LoginController extends GetxController {
   final TextEditingController usernameOrCorreoController =
       TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  final AuthController authController = Get.put(AuthController());
+  final AuthController authController = Get.find<AuthController>();
 
   void togglePasswordVisibility() {
     isPasswordVisible.value = !isPasswordVisible.value;
