@@ -8,30 +8,37 @@ import 'package:tepepixqui_movil/utils/database/login_querys.dart';
 
 class LoginController extends GetxController {
   var isPasswordVisible = false.obs;
-  final TextEditingController usernameOrCorreoController =
-      TextEditingController();
+  final TextEditingController usernameOrCorreoController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final AuthController authController = Get.find<AuthController>();
+
+  var loginFormKey = GlobalKey<FormState>().obs;
 
   void togglePasswordVisibility() {
     isPasswordVisible.value = !isPasswordVisible.value;
   }
 
+  void resetFormKey() {
+    loginFormKey.value = GlobalKey<FormState>();
+  }
+
   Future<void> login() async {
-    String usernameOrCorreo =
-        usernameOrCorreoController.value.text.trim().toLowerCase();
+    if (!loginFormKey.value.currentState!.validate()) {
+      return;
+    }
+
+    String usernameOrCorreo = usernameOrCorreoController.value.text.trim().toLowerCase();
     String password = passwordController.value.text;
 
-    Map<String, dynamic> result =
-        await LoginQuerys.signInWithUsernameOrEmail(usernameOrCorreo, password);
+    Map<String, dynamic> result = await LoginQuerys.signInWithUsernameOrEmail(usernameOrCorreo, password);
 
     if (result['loginStatus']) {
-      authController.login(result['email'], password, result['userType']);
+      await authController.login(result['email'], password, result['userType']);
 
       if (result['userType'] == "ong") {
-        Get.offAll(IndexOng());
+        Get.offAll(() => IndexOng());
       } else if (result['userType'] == "voluntario") {
-        Get.offAll(IndexVolunteer());
+        Get.offAll(() => IndexVolunteer());
       }
       clear();
     } else {

@@ -2,19 +2,26 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tepepixqui_movil/components/generals/custom_button.dart';
 import 'package:tepepixqui_movil/components/generals/custom_text_field.dart';
+import 'package:tepepixqui_movil/components/generals/theme_switcher.dart';
+import 'package:tepepixqui_movil/controllers/navigation/theme_controller.dart';
 import 'package:tepepixqui_movil/controllers/register/register_ong_controller.dart';
 import 'package:tepepixqui_movil/utils/validations/login/validations_ong.dart';
 
 class RegisterOngForm2 extends StatelessWidget {
   final RegisterOngController controller = Get.find();
+  final ThemeController themeController = Get.find<ThemeController>();
 
   RegisterOngForm2({super.key});
 
   @override
   Widget build(BuildContext context) {
+    return Obx((){
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Registro ONG'),
+        actions: [ThemeSwitcher()],
+        backgroundColor: themeController.appBarLogin(),
       ),
       body: Form(
         key: controller.signupFormKey2,
@@ -57,7 +64,6 @@ class RegisterOngForm2 extends StatelessWidget {
                   text: 'Seleccionar PDF',
                   onPressed: controller.pickPDF,
                   backgroundColor: Colors.blue,
-                  textColor: Colors.white,
                 ),
                 Obx(() {
                   if (controller.pdfFileName.value != null) {
@@ -75,14 +81,12 @@ class RegisterOngForm2 extends StatelessWidget {
                   onPressed: () {
                     controller.signupPart2();
                   },
-                  backgroundColor: Colors.black,
-                  textColor: Colors.white,
                 ),
               ],
             ),
           ),
         ),
       ),
-    );
+    );});
   }
 }

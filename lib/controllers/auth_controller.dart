@@ -1,10 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:tepepixqui_movil/pages/error_page.dart';
+import 'package:tepepixqui_movil/controllers/login_controller.dart';
 import 'package:tepepixqui_movil/pages/login_page.dart';
-import 'package:tepepixqui_movil/pages/ong/index_ong.dart';
-import 'package:tepepixqui_movil/pages/volunteer/index_volunteer.dart';
 
 class AuthController extends GetxController {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -49,6 +47,7 @@ class AuthController extends GetxController {
     await _auth.signOut();
     currentUser.value = null;
     userType.value = '';
+   Get.find<LoginController>().resetFormKey();
     Get.offAll(LoginPage());
   }
 

@@ -1,10 +1,6 @@
-
-
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tepepixqui_movil/controllers/auth_controller.dart';
-import 'package:tepepixqui_movil/pages/login_page.dart';
 
 class ErrorPage extends StatelessWidget {
 

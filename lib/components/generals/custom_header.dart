@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:tepepixqui_movil/components/generals/theme_switcher.dart';
+
 import 'package:url_launcher/url_launcher.dart';
 
 class CustomHeader extends StatelessWidget implements PreferredSizeWidget {
@@ -6,6 +8,9 @@ class CustomHeader extends StatelessWidget implements PreferredSizeWidget {
   final String redirectUrl;
   final VoidCallback onReportIconPressed;
   final VoidCallback onLogoutPressed;
+  final double height;
+
+  final double iconSize;
 
   const CustomHeader({
     super.key,
@@ -13,12 +18,14 @@ class CustomHeader extends StatelessWidget implements PreferredSizeWidget {
     required this.redirectUrl,
     required this.onReportIconPressed,
     required this.onLogoutPressed,
+    this.height = kToolbarHeight,
+    this.iconSize = 24.0,
   });
 
   Future<void> _launchURL() async {
     final Uri url = Uri.parse(redirectUrl);
     if (await canLaunchUrl(url)) {
-      await launchUrl(url);
+      await launchUrl(url, mode: LaunchMode.externalApplication);
     } else {
       throw 'Could not launch $redirectUrl';
     }
@@ -28,26 +35,28 @@ class CustomHeader extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       leading: IconButton(
-        icon: const Icon(Icons.bar_chart_sharp, color: Colors.black, size: 32,),
+        icon: Icon(Icons.analytics, size: iconSize),
         onPressed: onReportIconPressed,
       ),
       title: InkWell(
         onTap: _launchURL,
         child: Image.asset(
           logoPath,
-          height: 60,
+          height: 50,
         ),
       ),
       centerTitle: true,
       actions: [
+        ThemeSwitcher(), 
         IconButton(
-          icon: const Icon(Icons.logout, color: Colors.black, size: 32,),
+          icon: Icon(Icons.logout, size: iconSize),
           onPressed: onLogoutPressed,
         ),
+        
       ],
     );
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
+  Size get preferredSize => Size.fromHeight(height);
 }

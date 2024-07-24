@@ -8,7 +8,7 @@ class CustomButton extends StatelessWidget {
   final double borderRadius;
   final IconData? icon;
 
-  const CustomButton({
+  const CustomButton({super.key, 
     required this.text,
     required this.onPressed,
     this.backgroundColor = Colors.green,
@@ -26,7 +26,7 @@ class CustomButton extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(borderRadius),
         ),
-        padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 20.0),
+        padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 20.0),
       ),
       icon: icon != null ? Icon(icon, color: textColor) : Container(),
       label: Text(

@@ -2,27 +2,31 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tepepixqui_movil/components/generals/custom_button.dart';
 import 'package:tepepixqui_movil/components/generals/custom_text_field.dart';
+import 'package:tepepixqui_movil/components/generals/theme_switcher.dart';
 import 'package:tepepixqui_movil/controllers/forgot_password_controller.dart';
+import 'package:tepepixqui_movil/controllers/navigation/theme_controller.dart';
 import 'package:tepepixqui_movil/utils/validations/login/validations_ong.dart';
 
 class ForgotPasswordPage extends StatelessWidget {
-  final ForgotPasswordController controller = Get.put(ForgotPasswordController());
+  final ForgotPasswordController controller =
+      Get.put(ForgotPasswordController());
+  final ThemeController themeController = Get.find<ThemeController>();
 
   ForgotPasswordPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+   return Obx((){
+    
     return Scaffold(
-      appBar: AppBar(
+      appBar: 
+      AppBar(
         title: const Text(
           'Restablecer Contraseña',
-          style: TextStyle(color: Colors.green),
         ),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        iconTheme: const IconThemeData(color: Colors.green),
+        actions: [ThemeSwitcher()],
+        backgroundColor: themeController.appBarLogin(),
       ),
-      backgroundColor: Colors.white,
       body: Form(
         key: controller.forgotPasswordForm,
         child: SingleChildScrollView(
@@ -42,7 +46,6 @@ class ForgotPasswordPage extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
-                  color: Colors.black,
                 ),
                 textAlign: TextAlign.center,
               ),
@@ -52,21 +55,19 @@ class ForgotPasswordPage extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
-                  color: Colors.blue,
                 ),
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 20),
-               CustomTextField(
-                      hintText: "Correo electrónico",
-                      controller: controller.emailController,
-                      onChanged: (value) {},
-                      isPassword: false,
-                      keyboardType: TextInputType.emailAddress,
-                      validator: (value) =>
-                          ValidationsOng.validarCorreoElectronicoOrganizacion(
-                              value),
-                    ),
+              CustomTextField(
+                hintText: "Correo electrónico",
+                controller: controller.emailController,
+                onChanged: (value) {},
+                isPassword: false,
+                keyboardType: TextInputType.emailAddress,
+                validator: (value) =>
+                    ValidationsOng.validarCorreoElectronicoOrganizacion(value),
+              ),
               const SizedBox(height: 20),
               Obx(() {
                 return controller.isLoading.value
@@ -82,6 +83,6 @@ class ForgotPasswordPage extends StatelessWidget {
           ),
         ),
       ),
-    );
+    );});
   }
 }
