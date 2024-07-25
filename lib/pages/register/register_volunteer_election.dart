@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tepepixqui_movil/components/generals/custom_button.dart';
+import 'package:tepepixqui_movil/components/generals/custom_dialog.dart';
 import 'package:tepepixqui_movil/components/generals/theme_switcher.dart';
 import 'package:tepepixqui_movil/controllers/navigation/theme_controller.dart';
 import 'package:tepepixqui_movil/controllers/register/register_volunteer_controller.dart';
@@ -42,7 +43,7 @@ class RegisterVolunteerElection extends StatelessWidget {
                     ),
                     title: CustomButton(
                       text: "Registrarse con Google",
-                      onPressed: () => controller.signUpWithGoogle(),
+                      onPressed: () => {CustomDialogController.showCustomDialog("Esto no esta funcionando")},
                       backgroundColor: Colors.green,
                     ),
                   ),

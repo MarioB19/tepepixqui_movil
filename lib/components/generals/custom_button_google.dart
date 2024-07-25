@@ -1,5 +1,5 @@
-
 import 'package:flutter/material.dart';
+import 'package:tepepixqui_movil/components/generals/custom_dialog.dart';
 
 class CustomButtonGoogle extends StatelessWidget {
   final String imagePath;
@@ -13,7 +13,8 @@ class CustomButtonGoogle extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-       // LoginGoogleController().loginWithGoogle();
+        CustomDialogController.showCustomDialog("Esto no esta funcionando");
+        // LoginGoogleController().loginWithGoogle();
       },
       child: Container(
         padding: const EdgeInsets.all(20),
