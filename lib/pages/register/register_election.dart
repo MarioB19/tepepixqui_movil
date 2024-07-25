@@ -32,28 +32,35 @@ class RegisterElection extends StatelessWidget {
                     width: 250,
                     height: 250,
                   ),
-                  const SizedBox(height: 100),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      CircularButton(
-                        icon: Icons.people,
-                        text: 'Si eres voluntario,\npulsa aquí',
-                        onPressed: () {
-                          Get.to(RegisterVolunteerElection());
-                        },
-                        heroTag: 'voluntarioHeroTag',
-                      ),
-                      CircularButton(
-                        icon: Icons.apartment,
-                        text: 'Si eres una ONG,\npulsa aquí',
-                        onPressed: () {
-                          Get.to(RegisterOngForm1());
-                        },
-                        heroTag: 'ongHeroTag',
-                      ),
-                    ],
-                  ),
+                  const SizedBox(height: 50),
+                   Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            CircularButton(
+              icon: Icons.people,
+              text: 'Si eres voluntario,\npulsa aquí',
+              onPressed: () {
+                Get.to(RegisterVolunteerElection());
+              },
+              heroTag: 'voluntarioHeroTag',
+              size: 140.0, // Tamaño personalizado
+              backgroundColor: Colors.blue, // Color personalizado
+              foregroundColor: Colors.white, // Color de texto personalizado
+            ),
+            CircularButton(
+              icon: Icons.apartment,
+              text: 'Si eres una ONG,\npulsa aquí',
+              onPressed: () {
+                Get.to(RegisterOngForm1());
+              },
+              heroTag: 'ongHeroTag',
+              size: 140.0, // Tamaño personalizado
+              backgroundColor: Colors.green, // Color personalizado
+              foregroundColor: Colors.white, // Color de texto personalizado
+            ),
+          ],
+        ),
+
                   const SizedBox(height: 100),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,

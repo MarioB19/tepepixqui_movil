@@ -10,11 +10,12 @@ class VolunteerModel {
   String telefono;
   String username;
   String fechaNacimiento;
-
+  bool verificadoBrigadista;
 
   VolunteerModel({
     required this.uidVoluntario,
     required this.fechaCreacion,
+    this.verificadoBrigadista = false,
     required this.provedor,
     required this.nombre,
     required this.apellidos,
@@ -58,7 +59,7 @@ class VolunteerModel {
       'telefono': telefono,
       'username': username,
       'fechaNacimiento': fechaNacimiento,
-      
+      'verificadoBrigadista' : verificadoBrigadista,
     };
   }
 
@@ -75,6 +76,7 @@ class VolunteerModel {
       telefono: data['telefono'],
       username: data['username'],
       fechaNacimiento: data['fechaNacimiento'],
+      verificadoBrigadista : data ['verificadoBrigadista']
     );
   }
 }

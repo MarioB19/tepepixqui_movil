@@ -14,7 +14,6 @@ class LoginPage extends StatelessWidget {
   final ThemeController themeController = Get.find<ThemeController>();
     final LoginController loginController = Get.put(LoginController());
 
-
   LoginPage({super.key});
 
   @override

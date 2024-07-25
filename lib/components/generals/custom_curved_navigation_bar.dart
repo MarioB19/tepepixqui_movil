@@ -15,13 +15,17 @@ class CustomCurvedNavigationBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final NavigationController navigationController = Get.put(NavigationController());
 
+
+
     return Scaffold(
       body: Obx(() => pages[navigationController.currentIndex.value]),
-      bottomNavigationBar: CurvedNavigationBar(
+      bottomNavigationBar:
+      Obx((){
+       return CurvedNavigationBar(
         index: 0,
         height: 60.0,
-        items: icons.map((icon) => Icon(icon, size: 30, color: Colors.black,)).toList(),
-     
+        items: icons.map((icon) => Icon(icon, size: 30, color: controller.logosNavigationBar())).toList(),
+        color: controller.navigationBar(),
         backgroundColor: Colors.green,
         animationCurve: Curves.easeInOut,
         animationDuration: const Duration(milliseconds: 600),
@@ -29,7 +33,7 @@ class CustomCurvedNavigationBar extends StatelessWidget {
           navigationController.changePage(index);
         },
         letIndexChange: (index) => true,
-      ),
+      );})
     );
   }
 }

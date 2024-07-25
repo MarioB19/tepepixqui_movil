@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:tepepixqui_movil/components/generals/custom_curved_navigation_bar.dart';
 import 'package:tepepixqui_movil/components/generals/custom_header.dart';
 import 'package:tepepixqui_movil/controllers/auth_controller.dart';
+import 'package:tepepixqui_movil/pages/ong/oportunidades/ong_oportunidades_index.dart';
 
 class IndexOng extends StatelessWidget {
   final AuthController authController = Get.find<AuthController>();
@@ -33,14 +34,12 @@ class IndexOng extends StatelessWidget {
             ),
           ),
           const Center(child: Text('Página 2')),
-          const Center(child: Text('Página 3')),
-          const Center(child: Text('Página 4')),
+          const OngOportunidadesIndex(),
           const Center(child: Text('Página 5')),
           const Center(child: Text('Página 6')),
         ],
         icons: const [
           Icons.warning_amber_outlined,
-          Icons.campaign,
           Icons.group,
           Icons.local_fire_department_outlined,
           Icons.volunteer_activism_outlined,

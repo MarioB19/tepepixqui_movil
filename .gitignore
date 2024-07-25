@@ -40,6 +40,7 @@ macos/
 /lib/pages/firebase_options.dart
 # Symbolication related
 app.*.symbols
+.env.local
 
 # Obfuscation related
 app.*.map.json

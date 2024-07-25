@@ -15,9 +15,18 @@ class ThemeController extends GetxController {
 
   }
    Color navigationBar() {
-    return isDarkMode.value ? const Color.fromARGB(255, 255, 255, 255) : const Color.fromARGB(255, 0, 0, 0);
+    return !isDarkMode.value ? const Color.fromARGB(255, 255, 255, 255) : const Color.fromARGB(255, 0, 0, 0);
 
   }
+
+     Color logosNavigationBar() {
+    return isDarkMode.value ? const Color.fromARGB(255, 255, 255, 255) : const Color.fromARGB(255, 0, 0, 0);
+  }
+
+
+
+
+
 
  
 }
