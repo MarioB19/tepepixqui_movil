@@ -75,8 +75,9 @@ final ThemeData lightTheme = ThemeData(
   hintColor: Colors.black,
   scaffoldBackgroundColor: lightColorScheme.background,
   appBarTheme: AppBarTheme(
-    backgroundColor: lightColorScheme.primary,
-    foregroundColor: lightColorScheme.onPrimary,
+       backgroundColor: Colors.white,
+    foregroundColor: Colors.white,
+
     elevation: 0,
         iconTheme: IconThemeData(color: Colors.black),
     titleTextStyle: TextStyle(color: Colors.black, fontSize: 20),
@@ -180,8 +181,8 @@ final ThemeData darkTheme = ThemeData(
   hintColor: Colors.white,
   scaffoldBackgroundColor: darkColorScheme.background,
   appBarTheme: AppBarTheme(
-    backgroundColor: darkColorScheme.primary,
-    foregroundColor: darkColorScheme.onPrimary,
+    backgroundColor: Colors.black,
+    foregroundColor: Colors.black,
     elevation: 0,
     iconTheme: IconThemeData(color: Colors.white),
     titleTextStyle: TextStyle(color: Colors.white, fontSize: 20),
