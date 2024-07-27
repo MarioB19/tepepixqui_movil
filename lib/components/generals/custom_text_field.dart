@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class CustomTextField extends StatelessWidget {
   final String hintText;
+  final String? labelText; // Nuevo parámetro para el texto del decorador
   final TextEditingController controller;
   final bool isPassword;
   final bool isPasswordVisible;
@@ -15,8 +16,10 @@ class CustomTextField extends StatelessWidget {
   final int maxLines; // Nuevo parámetro para el máximo de líneas
   final int minLines; // Nuevo parámetro para el mínimo de líneas
 
-  const CustomTextField({super.key, 
+  const CustomTextField({
+    super.key,
     required this.hintText,
+    this.labelText, // Asignar el parámetro opcional
     required this.controller,
     this.isPassword = false,
     this.isPasswordVisible = false,
@@ -38,9 +41,6 @@ class CustomTextField extends StatelessWidget {
       obscureText: isPassword && !isPasswordVisible,
       keyboardType: keyboardType,
       onChanged: onChanged,
-  
-      
-
       autovalidateMode: AutovalidateMode.onUserInteraction,
       validator: validator,
       readOnly: readOnly, // Aplicar el parámetro readOnly
@@ -48,28 +48,25 @@ class CustomTextField extends StatelessWidget {
       minLines: minLines, // Establecer el mínimo de líneas
       decoration: InputDecoration(
         hintText: hintText,
+        labelText: labelText, // Utilizar el nuevo parámetro para el texto del decorador
         contentPadding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(16.0),
-       
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(16.0),
-       
         ),
-        prefixIcon: icon != null ? Icon(icon,) : null,
+        prefixIcon: icon != null ? Icon(icon) : null,
         suffixIcon: suffixIcon ?? (isPassword // Aplicar ícono de sufijo o visibilidad de contraseña
             ? IconButton(
                 icon: Icon(
                   isPasswordVisible ? Icons.visibility : Icons.visibility_off,
-               
                 ),
                 onPressed: onVisibilityToggle,
               )
             : null),
-                   errorMaxLines: 3,
+        errorMaxLines: 3,
       ),
-   
     );
   }
 }

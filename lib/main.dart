@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:tepepixqui_movil/controllers/auth_controller.dart';
 import 'package:tepepixqui_movil/controllers/navigation/theme_controller.dart';
@@ -9,6 +10,7 @@ import 'package:tepepixqui_movil/pages/error_page.dart';
 import 'package:tepepixqui_movil/pages/login_page.dart';
 import 'package:tepepixqui_movil/pages/ong/index_ong.dart';
 import 'package:tepepixqui_movil/pages/volunteer/index_volunteer.dart';
+import 'package:tepepixqui_movil/utils/services/location_service.dart';
 import 'package:tepepixqui_movil/utils/time.dart';
 import 'theme/theme_data.dart';
 
@@ -28,6 +30,7 @@ void main() async {
 
   Get.put(AuthController());
   Get.put(ThemeController());
+
 
   runApp(const MyApp());
 }
