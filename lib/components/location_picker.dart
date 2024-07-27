@@ -1,8 +1,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:tepepixqui_movil/utils/services/location_service.dart';
 
 class LocationPicker extends StatefulWidget {
   final Function(LatLng) onLocationSelected;
@@ -30,16 +31,15 @@ class _LocationPickerState extends State<LocationPicker> {
   }
 
   Future<void> _initializeLocation() async {
-    try {
-      Position position = await Geolocator.getCurrentPosition(
-          desiredAccuracy: LocationAccuracy.high);
-      setState(() {
+    Position? position = await LocationService.init();
+    setState(() {
+      if (position != null) {
         _initialPosition = LatLng(position.latitude, position.longitude);
-      });
-    } catch (e) {
-      // Usar una ubicación por defecto si no se puede obtener la ubicación actual
-      _initialPosition = const LatLng(0, 0);
-    }
+      } else {
+        // Usar una ubicación por defecto si no se puede obtener la ubicación actual
+        _initialPosition = const LatLng(0, 0);
+      }
+    });
   }
 
   void _onMapCreated(GoogleMapController controller) {
@@ -114,7 +114,8 @@ class _LocationPickerState extends State<LocationPicker> {
               icon: const Icon(Icons.check),
               label: const Text('Seleccionar'),
               style: ElevatedButton.styleFrom(
-                foregroundColor: Colors.white, backgroundColor: Colors.blue,
+                foregroundColor: Colors.white,
+                backgroundColor: Colors.blue,
                 padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               ),
             ),
