@@ -3,7 +3,10 @@ import 'package:get/get.dart';
 import 'package:tepepixqui_movil/components/generals/custom_curved_navigation_bar.dart';
 import 'package:tepepixqui_movil/components/generals/custom_header.dart';
 import 'package:tepepixqui_movil/controllers/auth_controller.dart';
+import 'package:tepepixqui_movil/pages/ong/alertas/ong_alertas_index.dart';
+import 'package:tepepixqui_movil/pages/ong/donaciones/ong_donaciones_index.dart';
 import 'package:tepepixqui_movil/pages/ong/oportunidades/ong_oportunidades_index.dart';
+import 'package:tepepixqui_movil/pages/ong/perfil/ong_perfil_index.dart';
 
 class IndexOng extends StatelessWidget {
   final AuthController authController = Get.find<AuthController>();
@@ -27,16 +30,11 @@ class IndexOng extends StatelessWidget {
 
       body: CustomCurvedNavigationBar(
         pages: [
-          Center(
-            child: Text(
-              'Hola, soy ong ${authController.getUid()}',
-              style: const TextStyle(fontSize: 24),
-            ),
-          ),
+          VistaAlertas(),
           const Center(child: Text('Página 2')),
           const OngOportunidadesIndex(),
-          const Center(child: Text('Página 5')),
-          const Center(child: Text('Página 6')),
+          VistaDonacionesRecursos(),
+          OngPerfilIndex(ongId: authController.getUid()!)
         ],
         icons: const [
           Icons.warning_amber_outlined,

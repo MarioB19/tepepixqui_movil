@@ -1,4 +1,4 @@
-
+import 'dart:ffi';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -13,6 +13,8 @@ class IncendioModel {
   String colorDelHumo;
   List<String> fotografias; // URLs or paths to images
 
+  bool activo;
+
   // Condiciones Meteorológicas
   String viento;
   String temperatura;
@@ -24,7 +26,6 @@ class IncendioModel {
     required this.ubicacionLongitud,
     required this.fechaInicio,
     required this.duracion,
-
     required this.tipoVegetacion,
     required this.intensidad,
     required this.colorDelHumo,
@@ -32,6 +33,7 @@ class IncendioModel {
     required this.viento,
     required this.temperatura,
     required this.humedad,
+     this.activo = true,
   });
 
   // Convert object to map
@@ -41,7 +43,6 @@ class IncendioModel {
       'ubicacionLongitud': ubicacionLongitud,
       'fechaInicio': fechaInicio.toIso8601String(),
       'duracion': duracion,
-
       'tipoVegetacion': tipoVegetacion,
       'intensidad': intensidad,
       'colorDelHumo': colorDelHumo,
@@ -49,6 +50,7 @@ class IncendioModel {
       'viento': viento,
       'temperatura': temperatura,
       'humedad': humedad,
+      'activo' : activo,
     };
   }
 
@@ -67,6 +69,7 @@ class IncendioModel {
       viento: map['viento'],
       temperatura: map['temperatura'],
       humedad: map['humedad'],
+      activo: map ['activo']
     );
   }
 

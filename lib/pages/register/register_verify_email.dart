@@ -46,12 +46,15 @@ class RegisterVerifyEmail extends StatelessWidget {
                       fontSize: 24,
                     ),
                     children: [
-                      const TextSpan(
+                       TextSpan(
                         text:
-                            'Hemos enviado un enlace de verificación a tu correo electrónico. Por favor, verifica tu cuenta para continuar, lo hemos enviado al siguiente correo ',
+                            'Hemos enviado un enlace de verificación a tu correo electrónico. Por favor, verifica tu cuenta para continuar, lo hemos enviado al siguiente correo: ',
                         style: TextStyle(
                           fontSize: 18,
+                          color: themeController.logosNavigationBar()
                         ),
+
+                        
                       ),
                       TextSpan(
                         text: correoElectronico,

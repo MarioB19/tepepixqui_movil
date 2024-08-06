@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tepepixqui_movil/components/generals/custom_button_circular.dart';
 import 'package:tepepixqui_movil/components/incendio_form.dart';
+import 'package:tepepixqui_movil/pages/ong/oportunidades/incendio_page.dart';
 
 class OngOportunidadesIndex extends StatelessWidget {
   const OngOportunidadesIndex({super.key});
@@ -10,9 +11,7 @@ class OngOportunidadesIndex extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
   
-      body: Center(
-        child: Text('Contenido de la página'),
-      ),
+      body: IncendioPage(),
       floatingActionButton: CircularButton(
         icon: Icons.add,
         text: '',

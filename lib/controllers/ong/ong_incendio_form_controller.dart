@@ -10,7 +10,7 @@ import 'package:tepepixqui_movil/pages/ong/oportunidades/ong_oportunidades_index
 import 'package:tepepixqui_movil/utils/services/files_service.dart';
 import 'package:tepepixqui_movil/utils/validations/validations_incendio.dart';
 
-class IncendioController extends GetxController {
+class OngIncendioFormController extends GetxController {
   var fechaInicio = DateTime.now().obs;
 
   TextEditingController duracion = TextEditingController();

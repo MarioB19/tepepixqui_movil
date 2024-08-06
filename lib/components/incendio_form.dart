@@ -7,12 +7,12 @@ import 'package:tepepixqui_movil/components/generals/theme_switcher.dart';
 import 'package:tepepixqui_movil/components/image_carousel.dart';
 import 'package:tepepixqui_movil/components/location_picker.dart';
 import 'package:tepepixqui_movil/controllers/navigation/theme_controller.dart';
-import 'package:tepepixqui_movil/controllers/ong/ong_incendio_controller.dart';
+import 'package:tepepixqui_movil/controllers/ong/ong_incendio_form_controller.dart';
 import 'package:tepepixqui_movil/utils/validations/validations_incendio.dart';
 
 class IncendioForm extends StatelessWidget {
   final ThemeController themeController = Get.find<ThemeController>();
-  final IncendioController controller = Get.put(IncendioController());
+  final OngIncendioFormController controller = Get.put(OngIncendioFormController());
 
   IncendioForm({super.key});
 
@@ -153,7 +153,7 @@ class IncendioForm extends StatelessWidget {
                   icon: Icons.water_drop,
                 )),
             const SizedBox(height: 16),
-             ImageCarousel<IncendioController>(controller: controller),
+             ImageCarousel<OngIncendioFormController>(controller: controller),
 
              const SizedBox(height: 32,),
              
