@@ -4,6 +4,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:tepepixqui_movil/components/generals/custom_dropdown_field.dart';
 import 'package:tepepixqui_movil/components/generals/custom_text_field.dart';
 import 'package:tepepixqui_movil/components/generals/theme_switcher.dart';
+import 'package:tepepixqui_movil/components/image_carousel.dart';
 import 'package:tepepixqui_movil/components/location_picker.dart';
 import 'package:tepepixqui_movil/controllers/navigation/theme_controller.dart';
 import 'package:tepepixqui_movil/controllers/ong/ong_incendio_controller.dart';
@@ -152,6 +153,8 @@ class IncendioForm extends StatelessWidget {
                   icon: Icons.water_drop,
                 )),
             const SizedBox(height: 16),
+             ImageCarousel<IncendioController>(controller: controller),
+             
             ElevatedButton(
               onPressed: () {
                 controller.uploadIncendio();

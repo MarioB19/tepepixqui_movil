@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:tepepixqui_movil/components/generals/custom_dialog.dart';
 import 'package:tepepixqui_movil/utils/validations/validations_incendio.dart';
 
@@ -53,6 +56,9 @@ class IncendioController extends GetxController {
     fechaInicio.value = date;
   }
 
+     var images = <File>[].obs;
+  final ImagePicker _picker = ImagePicker();
+
   void setFecha(BuildContext context) async {
     DateTime? picked = await showDatePicker(
       context: context,
@@ -93,4 +99,19 @@ class IncendioController extends GetxController {
     print('Temperatura: ${temperatura.value}');
     print('Humedad: ${humedad.value}');
   }
+
+
+
+
+  Future<void> addImage() async {
+    final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
+    if (pickedFile != null) {
+      images.add(File(pickedFile.path));
+    }
+  }
+
+  void removeImage(int index) {
+    images.removeAt(index);
+  }
+
 }
