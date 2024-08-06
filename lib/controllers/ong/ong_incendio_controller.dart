@@ -5,6 +5,9 @@ import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:tepepixqui_movil/components/generals/custom_dialog.dart';
+import 'package:tepepixqui_movil/models/incendio.dart';
+import 'package:tepepixqui_movil/pages/ong/oportunidades/ong_oportunidades_index.dart';
+import 'package:tepepixqui_movil/utils/services/files_service.dart';
 import 'package:tepepixqui_movil/utils/validations/validations_incendio.dart';
 
 class IncendioController extends GetxController {
@@ -56,7 +59,7 @@ class IncendioController extends GetxController {
     fechaInicio.value = date;
   }
 
-     var images = <File>[].obs;
+  var images = <File>[].obs;
   final ImagePicker _picker = ImagePicker();
 
   void setFecha(BuildContext context) async {
@@ -79,29 +82,50 @@ class IncendioController extends GetxController {
         'Ubicación seleccionada: ${location.latitude}, ${location.longitude}');
   }
 
-  void uploadIncendio() {
-    if (isLocationSelected.value == true) {
-      CustomDialogController.showCustomDialog("Se selecciono ubi");
+  Future<void> uploadIncendio() async {
+    if (isLocationSelected.value == false) {
+      CustomDialogController.showCustomDialog(
+          "Debe seleccionar por lo menos una ubicacion");
+      return;
     }
-    else{        CustomDialogController.showCustomDialog("No se selecciono ubi");
 
-    }
     String duration = duracion.value.text;
 
     if (ValidationsIncendio.validarDuracion(duration) != null) {
       return;
     }
 
-    print('Tipo de Vegetación: ${tipoVegetacion.value}');
-    print('Intensidad: ${intensidad.value}');
-    print('Color del Humo: ${colorDelHumo.value}');
-    print('Viento: ${viento.value}');
-    print('Temperatura: ${temperatura.value}');
-    print('Humedad: ${humedad.value}');
+    if (images.value.isEmpty) {
+      CustomDialogController.showCustomDialog(
+          "Debe seleccionar por lo menos una imagen");
+      return;
+    }
+
+    List<String> urlImages = await FilesService.uploadFiles(images);
+
+    IncendioModel incendio = new IncendioModel(
+        ubicacionLatitud: ubicacion.value.latitude,
+        ubicacionLongitud: ubicacion.value.longitude,
+        fechaInicio: fechaInicio.value,
+        duracion: duration,
+        tipoVegetacion: tipoVegetacion.value,
+        intensidad: intensidad.value,
+        colorDelHumo: colorDelHumo.value,
+        fotografias: urlImages,
+        viento: viento.value,
+        temperatura: temperatura.value,
+        humedad: humedad.value);
+
+    await incendio.create();
+
+    resetFields();
+
+    Get.back();
+
+    Get.back();
+
+    CustomDialogController.showCustomDialog("Incendio creado correctamente");
   }
-
-
-
 
   Future<void> addImage() async {
     final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
@@ -114,4 +138,17 @@ class IncendioController extends GetxController {
     images.removeAt(index);
   }
 
+  void resetFields() {
+    fechaInicio.value = DateTime.now();
+    duracion.clear();
+    tipoVegetacion.value = 'Bosque de coníferas';
+    intensidad.value = 'Baja';
+    colorDelHumo.value = 'Blanco';
+    viento.value = 'Norte';
+    temperatura.value = '11-20°C';
+    humedad.value = '< 30%';
+    ubicacion.value = const LatLng(0, 0);
+    isLocationSelected.value = false;
+    images.clear();
+  }
 }

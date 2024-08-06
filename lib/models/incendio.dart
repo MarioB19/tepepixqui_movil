@@ -1,11 +1,13 @@
+
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class Incendio {
+class IncendioModel {
   String id; // Firestore document ID
-  String ubicacion;
+  double ubicacionLatitud;
+  double ubicacionLongitud;
   DateTime fechaInicio;
-  Duration duracion;
-  double tamanoAproximado;
+  String duracion;
   String tipoVegetacion;
   String intensidad;
   String colorDelHumo;
@@ -13,31 +15,33 @@ class Incendio {
 
   // Condiciones Meteorológicas
   String viento;
-  double? temperatura;
+  String temperatura;
   String humedad;
 
-  Incendio({
-    required this.id,
-    required this.ubicacion,
+  IncendioModel({
+    this.id = '',
+    required this.ubicacionLatitud,
+    required this.ubicacionLongitud,
     required this.fechaInicio,
     required this.duracion,
-    required this.tamanoAproximado,
+
     required this.tipoVegetacion,
     required this.intensidad,
     required this.colorDelHumo,
     required this.fotografias,
     required this.viento,
-    this.temperatura,
+    required this.temperatura,
     required this.humedad,
   });
 
   // Convert object to map
   Map<String, dynamic> toMap() {
     return {
-      'ubicacion': ubicacion,
+      'ubicacionLatitud': ubicacionLatitud,
+      'ubicacionLongitud': ubicacionLongitud,
       'fechaInicio': fechaInicio.toIso8601String(),
-      'duracion': duracion.inHours,
-      'tamanoAproximado': tamanoAproximado,
+      'duracion': duracion,
+
       'tipoVegetacion': tipoVegetacion,
       'intensidad': intensidad,
       'colorDelHumo': colorDelHumo,
@@ -49,13 +53,13 @@ class Incendio {
   }
 
   // Create object from map
-  factory Incendio.fromMap(String id, Map<String, dynamic> map) {
-    return Incendio(
+  factory IncendioModel.fromMap(String id, Map<String, dynamic> map) {
+    return IncendioModel(
       id: id,
-      ubicacion: map['ubicacion'],
+      ubicacionLatitud: map['ubicacionLatitud'],
+      ubicacionLongitud: map['ubicacionLongitud'],
       fechaInicio: DateTime.parse(map['fechaInicio']),
-      duracion: Duration(hours: map['duracion']),
-      tamanoAproximado: map['tamanoAproximado'],
+      duracion: map['duracion'],
       tipoVegetacion: map['tipoVegetacion'],
       intensidad: map['intensidad'],
       colorDelHumo: map['colorDelHumo'],
@@ -69,22 +73,28 @@ class Incendio {
   // CRUD Operations
   // Create
   Future<void> create() async {
-    DocumentReference docRef = await FirebaseFirestore.instance.collection('incendios').add(toMap());
+    DocumentReference docRef =
+        await FirebaseFirestore.instance.collection('incendios').add(toMap());
     this.id = docRef.id;
   }
 
   // Read
-  static Future<Incendio?> read(String id) async {
-    DocumentSnapshot docSnap = await FirebaseFirestore.instance.collection('incendios').doc(id).get();
+  static Future<IncendioModel?> read(String id) async {
+    DocumentSnapshot docSnap =
+        await FirebaseFirestore.instance.collection('incendios').doc(id).get();
     if (docSnap.exists) {
-      return Incendio.fromMap(docSnap.id, docSnap.data() as Map<String, dynamic>);
+      return IncendioModel.fromMap(
+          docSnap.id, docSnap.data() as Map<String, dynamic>);
     }
     return null;
   }
 
   // Update
   Future<void> update() async {
-    await FirebaseFirestore.instance.collection('incendios').doc(id).update(toMap());
+    await FirebaseFirestore.instance
+        .collection('incendios')
+        .doc(id)
+        .update(toMap());
   }
 
   // Delete

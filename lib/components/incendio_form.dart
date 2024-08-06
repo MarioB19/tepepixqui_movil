@@ -154,6 +154,8 @@ class IncendioForm extends StatelessWidget {
                 )),
             const SizedBox(height: 16),
              ImageCarousel<IncendioController>(controller: controller),
+
+             const SizedBox(height: 32,),
              
             ElevatedButton(
               onPressed: () {

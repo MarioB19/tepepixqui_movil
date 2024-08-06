@@ -8,8 +8,7 @@ class LocationService {
     // Verifica si los servicios de ubicación están habilitados
     serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
-      // Podrías mostrar un diálogo o mensaje para indicar que los servicios de ubicación no están habilitados
-      return null;
+      return Future.error('Location services are disabled.');
     }
 
     // Verifica el estado del permiso
@@ -17,14 +16,12 @@ class LocationService {
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
       if (permission == LocationPermission.denied) {
-        // Permiso denegado, podrías mostrar un mensaje
-        return null;
+        return Future.error('Location permissions are denied.');
       }
     }
 
     if (permission == LocationPermission.deniedForever) {
-      // Permiso denegado para siempre, podrías mostrar un mensaje
-      return null;
+      return Future.error('Location permissions are permanently denied, we cannot request permissions.');
     }
 
     // Permisos concedidos, obtiene la ubicación actual

@@ -15,7 +15,7 @@ class ImageCarousel<T extends GetxController> extends StatelessWidget {
         Obx(() {
           var images = (controller as dynamic).images;
           return images.isEmpty
-              ? Center(child: Text('No images selected.'))
+              ? Center(child: Text('No hay imagenes seleccionadas'))
               : CarouselSlider.builder(
                   itemCount: images.length,
                   itemBuilder: (context, index, realIndex) {
