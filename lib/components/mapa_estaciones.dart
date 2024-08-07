@@ -13,8 +13,8 @@ class _MapaEstacionesState extends State<MapaEstaciones> {
   Estacion? estacionSeleccionada;
 
   static final CameraPosition posicionInicial = CameraPosition(
-    target: LatLng(20.6596988, -103.3496092),
-    zoom: 5,
+    target: LatLng(20.6241, -103.4843),
+    zoom: 10,
   );
 
   final List<Estacion> estaciones = [
