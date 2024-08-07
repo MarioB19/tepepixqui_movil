@@ -13,7 +13,7 @@ class CustomButtonGoogle extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        CustomDialogController.showCustomDialog("Esto no esta funcionando");
+        CustomDialogController.showCustomDialog("Nos encontramos trabajando en esto ...");
         // LoginGoogleController().loginWithGoogle();
       },
       child: Container(

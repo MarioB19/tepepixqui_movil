@@ -43,7 +43,7 @@ class RegisterVolunteerElection extends StatelessWidget {
                     ),
                     title: CustomButton(
                       text: "Registrarse con Google",
-                      onPressed: () => {CustomDialogController.showCustomDialog("Esto no esta funcionando")},
+                      onPressed: () => {CustomDialogController.showCustomDialog("Nos encontramos trabajando en esto ...")},
                       backgroundColor: Colors.green,
                     ),
                   ),

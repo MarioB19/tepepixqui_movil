@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tepepixqui_movil/components/generals/custom_curved_navigation_bar.dart';
+import 'package:tepepixqui_movil/components/generals/custom_dialog.dart';
 import 'package:tepepixqui_movil/components/generals/custom_header.dart';
 import 'package:tepepixqui_movil/controllers/auth_controller.dart';
 import 'package:tepepixqui_movil/pages/ong/alertas/ong_alertas_index.dart';
@@ -22,7 +23,8 @@ class IndexOng extends StatelessWidget {
         logoPath: 'assets/images/logo_indoor.png',
         redirectUrl: "https://tepepixqui.vercel.app/",
         onReportIconPressed: () {
-          print('Ícono de informes presionado');
+              CustomDialogController.showCustomDialog(
+              "Nos encontramos trabajando los informes :)");
         },
         onLogoutPressed: () async {
           await authController.logout();
