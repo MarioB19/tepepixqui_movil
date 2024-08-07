@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tepepixqui_movil/components/generals/custom_button_circular.dart';
-import 'package:tepepixqui_movil/components/incendio_form.dart';
+import 'package:tepepixqui_movil/components/incendio/incendio_form.dart';
 import 'package:tepepixqui_movil/pages/ong/oportunidades/incendio_page.dart';
 
 class OngOportunidadesIndex extends StatelessWidget {

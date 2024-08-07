@@ -1,27 +1,43 @@
 import 'package:get/get.dart';
-import 'package:tepepixqui_movil/models/incendio.dart'; // Asegúrate de tener un modelo de Incendio
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:tepepixqui_movil/models/incendio.dart';
+
 
 class IncendioListController extends GetxController {
-  var incendiosActivos = <IncendioModel>[].obs;
-  var incendiosPasados = <IncendioModel>[].obs;
-
-  // Simulación de la carga de datos
-  void cargarIncendios() {
-    incendiosActivos.addAll([
-      // Añade incendios de ejemplo aquí
-      //IncendioModel(ubicacionLatitud: 19.432608, ubicacionLongitud: -99.133209),
-      // Más datos de ejemplo...
-    ]);
-    incendiosPasados.addAll([
-      // Añade incendios de ejemplo aquí
-     // IncendioModel(ubicacionLatitud: 34.052235, ubicacionLongitud: -118.243683),
-      // Más datos de ejemplo...
-    ]);
-  }
+  final RxList<IncendioModel> incendiosActivos = <IncendioModel>[].obs;
+  final RxList<IncendioModel> incendiosPasados = <IncendioModel>[].obs;
 
   @override
   void onInit() {
     super.onInit();
-    cargarIncendios();
+    fetchIncendios();
+  }
+
+  void fetchIncendios() {
+    FirebaseFirestore.instance
+        .collection('incendios')
+        .snapshots()
+        .listen((snapshot) {
+      final List<IncendioModel> activosTemp = [];
+      final List<IncendioModel> pasadosTemp = [];
+
+      for (var doc in snapshot.docs) {
+        final incendio = IncendioModel.fromMap(doc.id, doc.data());
+        if (incendio.activo) {
+          activosTemp.add(incendio);
+        } else {
+          pasadosTemp.add(incendio);
+        }
+      }
+
+      incendiosActivos.value = activosTemp;
+      incendiosPasados.value = pasadosTemp;
+    });
+  }
+
+  void toggleIncendioStatus(IncendioModel incendio) {
+    incendio.activo = !incendio.activo;
+    incendio.update();
+    fetchIncendios(); // Recargar la lista después de actualizar
   }
 }
