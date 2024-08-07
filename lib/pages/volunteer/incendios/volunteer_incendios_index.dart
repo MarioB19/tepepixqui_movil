@@ -135,18 +135,25 @@ class _IncendiosPageState extends State<IncendiosPage> {
       padding: EdgeInsets.all(8.0),
       color: Colors.red[100],
       child: TextField(
-        decoration: InputDecoration(
-          hintText: 'Filtrar por ubicación',
-          prefixIcon: Icon(Icons.search, color: Colors.red[700]),
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(30),
-            borderSide: BorderSide.none,
-          ),
-          filled: true,
-          fillColor: Colors.white,
-        ),
-        onChanged: filtrarIncendios,
-      ),
+  decoration: InputDecoration(
+    hintText: 'Filtrar por ubicación',
+    hintStyle: TextStyle(
+      color: Theme.of(context).brightness == Brightness.dark ? Colors.white54 : Colors.black54,
+    ),
+    prefixIcon: Icon(Icons.search, color: Colors.red[700]),
+    border: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(30),
+      borderSide: BorderSide.none,
+    ),
+    filled: true,
+    fillColor: Theme.of(context).brightness == Brightness.dark ? Colors.grey[800] : Colors.white,
+  ),
+  style: TextStyle(
+    color: Theme.of(context).brightness == Brightness.dark ? Colors.white : Colors.black,
+  ),
+  onChanged: filtrarIncendios,
+),
+
     );
   }
 
