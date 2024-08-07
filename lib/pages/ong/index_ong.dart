@@ -4,6 +4,7 @@ import 'package:tepepixqui_movil/components/generals/custom_curved_navigation_ba
 import 'package:tepepixqui_movil/components/generals/custom_header.dart';
 import 'package:tepepixqui_movil/controllers/auth_controller.dart';
 import 'package:tepepixqui_movil/pages/ong/alertas/ong_alertas_index.dart';
+import 'package:tepepixqui_movil/pages/ong/brigadas/ong_brigadas_index.dart';
 import 'package:tepepixqui_movil/pages/ong/donaciones/ong_donaciones_index.dart';
 import 'package:tepepixqui_movil/pages/ong/oportunidades/ong_oportunidades_index.dart';
 import 'package:tepepixqui_movil/pages/ong/perfil/ong_perfil_index.dart';
@@ -31,7 +32,7 @@ class IndexOng extends StatelessWidget {
       body: CustomCurvedNavigationBar(
         pages: [
           VistaAlertas(),
-          const Center(child: Text('Página 2')),
+        BrigadesView(),
           const OngOportunidadesIndex(),
           VistaDonacionesRecursos(),
           OngPerfilIndex(ongId: authController.getUid()!)
