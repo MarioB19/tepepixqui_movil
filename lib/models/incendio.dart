@@ -13,6 +13,7 @@ class IncendioModel {
   String colorDelHumo;
   List<String> fotografias; // URLs or paths to images
 
+  String descripcion;
   bool activo;
 
   // Condiciones Meteorológicas
@@ -22,6 +23,7 @@ class IncendioModel {
 
   IncendioModel({
     this.id = '',
+    required this.descripcion,
     required this.ubicacionLatitud,
     required this.ubicacionLongitud,
     required this.fechaInicio,
@@ -50,6 +52,7 @@ class IncendioModel {
       'viento': viento,
       'temperatura': temperatura,
       'humedad': humedad,
+      'descripcion': descripcion,
       'activo' : activo,
     };
   }
@@ -58,6 +61,7 @@ class IncendioModel {
   factory IncendioModel.fromMap(String id, Map<String, dynamic> map) {
     return IncendioModel(
       id: id,
+      descripcion: map['descripcion'],
       ubicacionLatitud: map['ubicacionLatitud'],
       ubicacionLongitud: map['ubicacionLongitud'],
       fechaInicio: DateTime.parse(map['fechaInicio']),

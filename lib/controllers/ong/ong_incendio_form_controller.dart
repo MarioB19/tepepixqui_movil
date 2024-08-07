@@ -1,12 +1,13 @@
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:tepepixqui_movil/components/generals/custom_dialog.dart';
 import 'package:tepepixqui_movil/models/incendio.dart';
-import 'package:tepepixqui_movil/pages/ong/oportunidades/ong_oportunidades_index.dart';
+
 import 'package:tepepixqui_movil/utils/services/files_service.dart';
 import 'package:tepepixqui_movil/utils/validations/validations_incendio.dart';
 
@@ -14,6 +15,7 @@ class OngIncendioFormController extends GetxController {
   var fechaInicio = DateTime.now().obs;
 
   TextEditingController duracion = TextEditingController();
+  TextEditingController descripcion = TextEditingController();
 
   var tipoVegetacion = 'Bosque de coníferas'.obs;
   var intensidad = 'Baja'.obs;
@@ -90,6 +92,7 @@ class OngIncendioFormController extends GetxController {
     }
 
     String duration = duracion.value.text;
+    String description = descripcion.value.text;
 
     if (ValidationsIncendio.validarDuracion(duration) != null) {
       return;
@@ -101,9 +104,14 @@ class OngIncendioFormController extends GetxController {
       return;
     }
 
+    if (description.isEmpty || description.length < 10) {
+      return;
+    }
+
     List<String> urlImages = await FilesService.uploadFiles(images);
 
     IncendioModel incendio = new IncendioModel(
+        descripcion: description,
         ubicacionLatitud: ubicacion.value.latitude,
         ubicacionLongitud: ubicacion.value.longitude,
         fechaInicio: fechaInicio.value,

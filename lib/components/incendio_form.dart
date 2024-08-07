@@ -152,6 +152,27 @@ class IncendioForm extends StatelessWidget {
                       controller.humedad.value = newValue ?? '',
                   icon: Icons.water_drop,
                 )),
+
+                  CustomTextField(
+            labelText: "Descripción del evento",
+            hintText: 'Proporcione una descripción detallada del incendio',
+            controller: controller.descripcion,
+            keyboardType: TextInputType.multiline,
+            maxLines: 3,
+            onChanged: (value) {
+              // Puedes agregar lógica adicional aquí si es necesario
+            },
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Por favor, ingrese una descripción del incendio';
+              }
+              if (value.length < 10) {
+                return 'La descripción debe tener al menos 10 caracteres';
+              }
+              return null;
+            },
+            suffixIcon: const Icon(Icons.description),
+          ),
             const SizedBox(height: 16),
              ImageCarousel<OngIncendioFormController>(controller: controller),
 
